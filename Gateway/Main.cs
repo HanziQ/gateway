@@ -1,45 +1,40 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Reflection;
 
 namespace Gateway
 {
+    public enum State
+    {
+        Menu,
+        List,
+        Task
+    }
+
     public class Main
     {
-        private ITaskList taskList;
+        public State State = State.Menu;
 
-        public Main(ITaskList taskList)
+        public Renderer Renderer
         {
-            this.taskList = taskList;
-            Run();
+            get;
+            private set;
         }
 
-        private void Run()
+        string title, body;
+
+        public Main(string title, string body)
         {
-            WriteHeader();
-            WritePrompt();
-            string read = Console.ReadLine();
+            this.title = title;
+            this.body = body;
+            Console.Title = title;
 
-            Console.Clear();
-
-            int taskID;
-            if (int.TryParse(read, out taskID))
-            {
-                MethodInfo method = taskList.GetType().GetMethod("Task" + taskID.ToString());
-                if (method != null)
-                {
-                    method.Invoke(taskList, null);
-                }
-            }
+            Renderer = new Renderer();
+            Renderer.Title = title;
+            Renderer.Body = body;
         }
-
-        string title = "Gateway";
 
         private void WriteHeader()
         {
-            Console.Write(new String('=', Console.WindowWidth));
+            Console.Write(new String((char)219, Console.WindowWidth));
             int before = Console.WindowWidth / 2 - title.Length / 2;
             Console.CursorLeft = before;
             Console.WriteLine(title);
