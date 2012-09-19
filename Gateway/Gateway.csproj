@@ -41,12 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Input.cs" />
-    <Compile Include="Main.cs" />
+    <Compile Include="Engine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Renderer.cs" />
     <Compile Include="Rule.cs" />
+    <Compile Include="Rules\FloatRule.cs" />
     <Compile Include="Rules\IntegerRule.cs" />
-    <Compile Include="Task.cs" />
+    <Compile Include="ITask.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

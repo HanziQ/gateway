@@ -31,10 +31,19 @@ namespace Gateway
 
         public T Process()
         {
+            Console.WriteLine(message);
             while (true)
             {
-                string input = "";// Main.ReadLine();
-                T value = (T)Convert.ChangeType(input, typeof(T));
+                string input = Console.ReadLine();
+                T value = default(T);
+                try
+                {
+                    value = (T)Convert.ChangeType(input, typeof(T));
+                }
+                catch (Exception e)
+                {
+
+                }
 
                 List<Rule<T>> failedRules = new List<Rule<T>>();
 
