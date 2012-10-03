@@ -13,8 +13,8 @@ namespace TestApplication.Tasks
         {
             int polomer = Input<int>.Get("Zadejte poloměr kruhu.").AddRule(IntegerRule.Positive);
 
-            Console.WriteLine("Obvod kruhu je: " + Math.PI * 2 * polomer);
-            Console.WriteLine("Obsah kruhu je: " + Math.PI * polomer * polomer);
+            Engine.Body.AddLine("Obvod kruhu je: " + Math.PI * 2 * polomer);
+            Engine.Body.AddLine("Obsah kruhu je: " + Math.PI * polomer * polomer);
 
             Console.ReadLine();
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Collections.Generic;
 
 namespace Gateway
 {
@@ -14,6 +15,12 @@ namespace Gateway
     {
         public static State State = State.Menu;
 
+        public static Header Header = new Header();
+
+        public static Body Body = new Body();
+
+        public static Prompt Prompt = new Prompt();
+
         private static string _title = "";
 
         public static string Title
@@ -24,8 +31,8 @@ namespace Gateway
             set
             {
                 _title = value;
-                Console.Title = CompleteTitle;
-                WriteHeader(CompleteTitle);
+                ConsoleEx.Title = CompleteTitle;
+                Header.Draw();
             }
         }
 
@@ -39,76 +46,35 @@ namespace Gateway
             }
         }
 
-        public static int ScrollPosition = 0;
-
         public static void Start()
         {
             Console.OutputEncoding = Encoding.UTF8;
-            WriteHeader(CompleteTitle);
-            //WriteBody();
-                
-            Console.ReadLine();
 
+            Body.AddLine("Pro spuštění úlohy zadejte její číslo a stiskněte Enter.");
+
+            Header.Draw();
+            Body.Draw();
+            Prompt.Draw();
+
+
+                while (true)
+                {
+                    string line = ReadLine();
+                    int number;
+                    if(int.TryParse(line, out number))
+                    {
+                        ITask task = (ITask)(Activator.CreateInstance("TestApplication", "TestApplication.Tasks.Task" + number).Unwrap());
+                        task.Process();
+                        Console.ReadLine();
+                    }
+                }
+
+  
         }
 
-        public static void WriteHeader(string title)
+        public static string ReadLine()
         {
-            SaveCursor();
-            Console.SetCursorPosition(0, 0);
-
-            if (title.Length > Console.WindowWidth - 4)
-            {
-                title = title.Remove(Console.WindowWidth - 7) + "...";
-            }            
-
-            Console.Write((char)0x2554);
-            Console.Write(new String((char)0x2550,Console.WindowWidth-2));
-            Console.Write((char)0x2557);
-
-            Console.Write((char)0x2551);
-            int before = Console.WindowWidth / 2 - title.Length / 2;
-            Console.CursorLeft = before;
-            Console.Write(title);
-            Console.CursorLeft = Console.WindowWidth-1;
-            Console.Write((char)0x2551);
-
-            Console.Write((char)0x255A);
-            Console.Write(new String((char)0x2550, Console.WindowWidth - 2));
-            Console.Write((char)0x255D);
-
-            RestoreCursor();
-        }
-
-        public static void WriteBody(StringBuilder builder)
-        {
-            SaveCursor();
-            Console.SetCursorPosition(3, 0);
-
-            string[] lines = builder.ToString().Split('\n');
-            
-
-            RestoreCursor();
-        }
-
-        public static void WritePrompt()
-        {
-            Console.CursorTop = Console.WindowHeight - 3;
-            Console.WriteLine("Zadejte číslo úlohy:");
-            Console.Write(new String('-', Console.WindowWidth));
-            Console.Write('>');
-        }
-
-        static int left, top;
-
-        public static void SaveCursor()
-        {
-            left = Console.CursorLeft;
-            top = Console.CursorTop;
-        }
-
-        public static void RestoreCursor()
-        {
-            Console.SetCursorPosition(left, top);
+            return Console.ReadLine();
         }
     }
 }

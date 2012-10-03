@@ -9,7 +9,7 @@ namespace TestApplication
         static void Main(string[] args)
         {
             Engine.BaseTitle = "Gateway";
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.ForegroundColor = ConsoleColor.White;
             Engine.Start();  
         }
     }

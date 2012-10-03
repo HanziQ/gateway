@@ -40,8 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Body.cs" />
+    <Compile Include="ConsoleEx.cs" />
+    <Compile Include="Header.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="Engine.cs" />
+    <Compile Include="Prompt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rule.cs" />
     <Compile Include="Rules\FloatRule.cs" />

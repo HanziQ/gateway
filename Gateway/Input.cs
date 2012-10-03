@@ -31,21 +31,16 @@ namespace Gateway
 
         public T Process()
         {
-            Console.WriteLine(message);
+            Engine.Body.AddLine(message);
             while (true)
             {
-                string input = Console.ReadLine();
+                string input = Engine.ReadLine();
+                Engine.Body.AddLine("> " + input);
                 T value = default(T);
-                try
-                {
-                    value = (T)Convert.ChangeType(input, typeof(T));
-                }
-                catch (Exception e)
-                {
+                    
+                value = (T)Convert.ChangeType(input, typeof(T));
 
-                }
-
-                List<Rule<T>> failedRules = new List<Rule<T>>();
+                List<RuleException> exceptions = new List<RuleException>();
 
                 foreach (Rule<T> r in rules)
                 {
@@ -55,16 +50,21 @@ namespace Gateway
                     }
                     catch (RuleException e)
                     {
-
+                        exceptions.Add(e);
                     }
                 }
-                if (failedRules.Count == 0)
+                if (exceptions.Count == 0)
                 {
                     return value;
                 }
                 else
                 {
-
+                    ConsoleEx.TextColor(ConsoleForeground.White, ConsoleBackground.Red);
+                    foreach (RuleException e in exceptions)
+                    {                        
+                        Engine.Body.AddLine(e.Message);
+                    }
+                    ConsoleEx.ResetColor();
                 }
             }
         }
