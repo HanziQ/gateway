@@ -1,7 +1,6 @@
 ﻿
-using Gateway;
 using System;
-using TestApplication.Tasks;
+using Gateway;
 using Gateway.TaskList;
 namespace TestApplication
 {
@@ -10,8 +9,8 @@ namespace TestApplication
         static void Main(string[] args)
         {
             Console.ForegroundColor = ConsoleColor.White;
-            Engine.AddTaskList(new ReflectionTaskList("TestApplication", "TestApplication.Tasks"));
-            Engine.Start();  
+            Engine.AddTaskList(new ReflectionTaskList("TestApplication", "TestApplication.Tasks.Task"));
+            Engine.Start();
         }
     }
 }

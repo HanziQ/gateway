@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Gateway.TaskList
 {
     public class ReflectionTaskList : ITaskList
     {
-        string assemblyName, namespaceName;
+        string assemblyName, typeName;
 
-        public ReflectionTaskList(string assemblyName, string namespaceName)
+        public ReflectionTaskList(string assemblyName, string typeName)
         {
             this.assemblyName = assemblyName;
-            this.namespaceName = namespaceName;
+            this.typeName = typeName;
         }
 
         public bool ProcessTask(int number)
@@ -20,12 +17,12 @@ namespace Gateway.TaskList
             ITask task;
             try
             {
-                task = (ITask)(Activator.CreateInstance(assemblyName, namespaceName + ".Task" + number).Unwrap());
+                task = (ITask)(Activator.CreateInstance(assemblyName, typeName + number).Unwrap());
             }
             catch (TypeLoadException)
             {
                 return false;
-            }            
+            }
             task.Process();
             return true;
         }

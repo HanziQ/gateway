@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Text;
 using System.Collections.Generic;
+using System.Text;
 using Gateway.TaskList;
 
 namespace Gateway
@@ -16,36 +16,51 @@ namespace Gateway
     {
         static List<ITaskList> taskLists = new List<ITaskList>();
 
+        static bool noTaskFound = true;
+
+        static bool writeHeader = true;
+
+        static string header = "Pro spuštění úlohy zadejte její číslo a stiskněte Enter.";
+
         public static void Start()
         {
             Console.OutputEncoding = Encoding.UTF8;
 
-            bool noTaskFound = true;
-
             while (true)
             {
-                Console.WriteLine("Pro spuštění úlohy zadejte její číslo a stiskněte Enter.");
+                if (writeHeader)
+                {
+                    Console.WriteLine(header);
+                    writeHeader = false;
+                }
                 string line = ReadLine();
                 int number;
                 if (int.TryParse(line, out number))
                 {
-                    foreach (ITaskList taskList in taskLists)
+                    try
                     {
-                        noTaskFound = true;
-                        if (taskList.ProcessTask(number))
+                        foreach (ITaskList taskList in taskLists)
                         {
-                            noTaskFound = false;
-                            break;
+                            noTaskFound = true;
+                            if (taskList.ProcessTask(number))
+                            {
+                                noTaskFound = false;
+                                break;
+                            }
                         }
+                        if (noTaskFound)
+                        {
+                            WriteErrorLine("Úloha nebyla nalezena.");
+                            continue;
+                        }
+                        Console.ReadLine();
                     }
-                    if (noTaskFound)
+                    catch (InterruptException)
                     {
-                        WriteErrorLine("Úloha nebyla nalezena.");
-                        
-                        continue;
+
                     }
-                    Console.ReadLine();
                     Console.Clear();
+                    writeHeader = true;
                 }
             }
 

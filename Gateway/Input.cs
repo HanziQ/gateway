@@ -42,8 +42,15 @@ namespace Gateway
 
             while (true)
             {
-                string input = Engine.ReadLine();
-
+                string input;
+                try
+                {
+                    input = Engine.ReadLine();
+                }
+                catch (EscapePressedException)
+                {
+                    throw new InterruptException();
+                }
                 T value = default(T);
                 try
                 {
@@ -52,8 +59,8 @@ namespace Gateway
                 catch (FormatException)
                 {
                     if (typeRules.ContainsKey(typeof(T)))
-                    {                        
-                        Engine.WriteErrorLine(typeRules[typeof(T)]);                        
+                    {
+                        Engine.WriteErrorLine(typeRules[typeof(T)]);
                     }
                     continue;
                 }

@@ -43,6 +43,8 @@
     <Compile Include="ConsoleEx.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="Engine.cs" />
+    <Compile Include="EscapePressedException.cs" />
+    <Compile Include="InterruptException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rule.cs" />
     <Compile Include="Rules\FloatRule.cs" />
