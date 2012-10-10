@@ -12,7 +12,7 @@ namespace TestApplication.Tasks
         public void Process()
         {
             float x = Input<float>.Get("Zadejte x.");
-            Engine.Body.AddLine("Výsledek je: " + (Math.Sin(Math.Sqrt(x)) + 3) / (x * x - 1));
+            Console.WriteLine("Výsledek je: " + (Math.Sin(Math.Sqrt(x)) + 3) / (x * x - 1));
         }
     }
 }

@@ -28,11 +28,11 @@ namespace TestApplication.Tasks
                     }
                 }
             }
-            Engine.Body.AddLine("Potřebné počty mincí a bankovek jsou:");
+            Console.WriteLine("Potřebné počty mincí a bankovek jsou:");
             foreach (KeyValuePair<int, int> pair in pocty)
             {
                 if(pair.Value != 0)
-                Engine.Body.AddLine(pair.Value.ToString() + "x " + pair.Key.ToString());
+                Console.WriteLine(pair.Value.ToString() + "x " + pair.Key.ToString());
             }
         }
     }

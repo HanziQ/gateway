@@ -5,6 +5,12 @@ namespace Gateway
 {
     public class Input<T> where T : struct
     {
+        static Dictionary<Type, string> typeRules = new Dictionary<Type, string>()
+        {
+            {typeof(int), "Zadejte číslo."},
+            {typeof(float), "Zadejte číslo."}
+        };
+
         string message;
         List<Rule<T>> rules = new List<Rule<T>>();
 
@@ -31,15 +37,26 @@ namespace Gateway
 
         public T Process()
         {
-            Engine.Body.AddLine(message);
+            if (message.Length > 0)
+                Console.WriteLine(message);
+
             while (true)
             {
                 string input = Engine.ReadLine();
-                Engine.Body.AddLine("> " + input);
-                T value = default(T);
-                    
-                value = (T)Convert.ChangeType(input, typeof(T));
 
+                T value = default(T);
+                try
+                {
+                    value = (T)Convert.ChangeType(input, typeof(T));
+                }
+                catch (FormatException)
+                {
+                    if (typeRules.ContainsKey(typeof(T)))
+                    {                        
+                        Engine.WriteErrorLine(typeRules[typeof(T)]);                        
+                    }
+                    continue;
+                }
                 List<RuleException> exceptions = new List<RuleException>();
 
                 foreach (Rule<T> r in rules)
@@ -61,8 +78,8 @@ namespace Gateway
                 {
                     ConsoleEx.TextColor(ConsoleForeground.White, ConsoleBackground.Red);
                     foreach (RuleException e in exceptions)
-                    {                        
-                        Engine.Body.AddLine(e.Message);
+                    {
+                        Console.WriteLine(e.Message);
                     }
                     ConsoleEx.ResetColor();
                 }

@@ -14,9 +14,7 @@ namespace TestApplication.Tasks
             int czk = Input<int>.Get("Zadejte cenu zboží v Kč.").AddRule(IntegerRule.NonNegative);
             float kurz = Input<float>.Get("Zadejde kurz (kolik Kč je 1 €).").AddRule(FloatRule.Positive);
 
-            Engine.Body.AddLine("Cena zboží v € je: " + czk / kurz);
-
-            Console.ReadLine();
+            Console.WriteLine("Cena zboží v € je: " + czk / kurz);
         }
     }
 }

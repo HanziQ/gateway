@@ -45,12 +45,19 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tasks\Task10.cs" />
+    <Compile Include="Tasks\Task11.cs" />
+    <Compile Include="Tasks\Task12.cs" />
+    <Compile Include="Tasks\Task13.cs" />
+    <Compile Include="Tasks\Task7.cs" />
     <Compile Include="Tasks\Task6.cs" />
     <Compile Include="Tasks\Task1.cs" />
     <Compile Include="Tasks\Task2.cs" />
     <Compile Include="Tasks\Task3.cs" />
     <Compile Include="Tasks\Task4.cs" />
     <Compile Include="Tasks\Task5.cs" />
+    <Compile Include="Tasks\Task8.cs" />
+    <Compile Include="Tasks\Task9.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gateway\Gateway.csproj">

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Collections.Generic;
+using Gateway.TaskList;
 
 namespace Gateway
 {
@@ -13,68 +14,59 @@ namespace Gateway
 
     public static class Engine
     {
-        public static State State = State.Menu;
-
-        public static Header Header = new Header();
-
-        public static Body Body = new Body();
-
-        public static Prompt Prompt = new Prompt();
-
-        private static string _title = "";
-
-        public static string Title
-        {
-         get{
-             return _title;
-         }
-            set
-            {
-                _title = value;
-                ConsoleEx.Title = CompleteTitle;
-                Header.Draw();
-            }
-        }
-
-        public static string BaseTitle;
-
-        public static string CompleteTitle
-        {
-            get
-            {
-                return BaseTitle + (Title == "" ? "" : " - " + Title);
-            }
-        }
+        static List<ITaskList> taskLists = new List<ITaskList>();
 
         public static void Start()
         {
             Console.OutputEncoding = Encoding.UTF8;
 
-            Body.AddLine("Pro spuštění úlohy zadejte její číslo a stiskněte Enter.");
+            bool noTaskFound = true;
 
-            Header.Draw();
-            Body.Draw();
-            Prompt.Draw();
-
-
-                while (true)
+            while (true)
+            {
+                Console.WriteLine("Pro spuštění úlohy zadejte její číslo a stiskněte Enter.");
+                string line = ReadLine();
+                int number;
+                if (int.TryParse(line, out number))
                 {
-                    string line = ReadLine();
-                    int number;
-                    if(int.TryParse(line, out number))
+                    foreach (ITaskList taskList in taskLists)
                     {
-                        ITask task = (ITask)(Activator.CreateInstance("TestApplication", "TestApplication.Tasks.Task" + number).Unwrap());
-                        task.Process();
-                        Console.ReadLine();
+                        noTaskFound = true;
+                        if (taskList.ProcessTask(number))
+                        {
+                            noTaskFound = false;
+                            break;
+                        }
                     }
+                    if (noTaskFound)
+                    {
+                        WriteErrorLine("Úloha nebyla nalezena.");
+                        
+                        continue;
+                    }
+                    Console.ReadLine();
+                    Console.Clear();
                 }
+            }
 
-  
+        }
+
+        public static void AddTaskList(ITaskList taskList)
+        {
+            taskLists.Add(taskList);
         }
 
         public static string ReadLine()
         {
+            Console.Write(">");
             return Console.ReadLine();
+        }
+
+        public static void WriteErrorLine(string p)
+        {
+            ConsoleEx.TextColor(ConsoleForeground.White, ConsoleBackground.Red);
+            Console.WriteLine(p);
+            ConsoleEx.ResetColor();
         }
     }
 }

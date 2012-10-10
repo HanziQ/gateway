@@ -14,10 +14,9 @@ namespace TestApplication.Tasks
             float ca = Input<float>.Get("Zadejte úsek přepony přilehlý ke straně a.").AddRule(FloatRule.Positive);
             float cb = Input<float>.Get("Zadejte úsek přepony přilehlý ke straně b.").AddRule(FloatRule.Positive);
 
-            Engine.Body.AddLine("Výška trojúhelníku na stranu c je: " + Math.Sqrt(ca * cb));
-            Engine.Body.AddLine("Strana a má délku: " + Math.Sqrt(ca * (ca + cb)));
-            Engine.Body.AddLine("Strana b má délku: " + Math.Sqrt(cb * (ca + cb)));
-            Console.ReadLine();
+            Console.WriteLine("Výška trojúhelníku na stranu c je: " + Math.Sqrt(ca * cb));
+            Console.WriteLine("Strana a má délku: " + Math.Sqrt(ca * (ca + cb)));
+            Console.WriteLine("Strana b má délku: " + Math.Sqrt(cb * (ca + cb)));
         }
     }
 }

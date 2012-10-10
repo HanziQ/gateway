@@ -2,7 +2,9 @@
 using System;
 namespace Gateway
 {
-    public class Rule<T> where T : struct
+    public interface IRule { }
+
+    public class Rule<T> : IRule where T : struct 
     {
         string message;
         Predicate<T> predicate;
