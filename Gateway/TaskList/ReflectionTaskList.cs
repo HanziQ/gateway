@@ -4,26 +4,28 @@ namespace Gateway.TaskList
 {
     public class ReflectionTaskList : ITaskList
     {
-        string assemblyName, typeName;
+        string assemblyName, typeName, methodName;
 
-        public ReflectionTaskList(string assemblyName, string typeName)
+        public ReflectionTaskList(string assemblyName, string typeName, string methodName)
         {
             this.assemblyName = assemblyName;
             this.typeName = typeName;
+            this.methodName = methodName;
         }
 
         public bool ProcessTask(int number)
         {
-            ITask task;
+
             try
             {
-                task = (ITask)(Activator.CreateInstance(assemblyName, typeName + number).Unwrap());
+
+                object o = Activator.CreateInstance(assemblyName, typeName.Replace("%n%", number.ToString())).Unwrap();
+                o.GetType().GetMethod(methodName).Invoke(o, null);
             }
-            catch (TypeLoadException)
+            catch (Exception)
             {
                 return false;
             }
-            task.Process();
             return true;
         }
     }
