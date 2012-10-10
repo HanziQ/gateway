@@ -20,7 +20,7 @@ namespace Gateway.TaskList
             {
 
                 object o = Activator.CreateInstance(assemblyName, typeName.Replace("%n%", number.ToString())).Unwrap();
-                o.GetType().GetMethod(methodName).Invoke(o, null);
+                o.GetType().GetMethod(methodName.Replace("%n%", number.ToString())).Invoke(o, null);
             }
             catch (Exception)
             {
