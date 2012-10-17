@@ -49,7 +49,6 @@
     <Compile Include="Rule.cs" />
     <Compile Include="Rules\FloatRule.cs" />
     <Compile Include="Rules\IntegerRule.cs" />
-    <Compile Include="ITask.cs" />
     <Compile Include="TaskList\ITaskList.cs" />
     <Compile Include="TaskList\ReflectionTaskList.cs" />
   </ItemGroup>

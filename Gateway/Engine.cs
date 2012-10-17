@@ -39,9 +39,9 @@ namespace Gateway
                 {
                     try
                     {
+                        noTaskFound = true;
                         foreach (ITaskList taskList in taskLists)
-                        {
-                            noTaskFound = true;
+                        {                            
                             if (taskList.ProcessTask(number))
                             {
                                 noTaskFound = false;

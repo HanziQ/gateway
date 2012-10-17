@@ -10,6 +10,7 @@ namespace TestApplication
         {
             Console.ForegroundColor = ConsoleColor.White;
             Engine.AddTaskList(new ReflectionTaskList("TestApplication", "TestApplication.Tasks.Task%n%", "Process"));
+            Engine.AddTaskList(new ReflectionTaskList("TestApplication", "TestApplication.Tasks.Tasks", "Process%n%"));
             Engine.Start();
         }
     }

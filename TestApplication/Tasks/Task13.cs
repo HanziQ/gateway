@@ -4,7 +4,7 @@ using Gateway;
 
 namespace TestApplication.Tasks
 {
-    public class Task13 : ITask
+    public class Task13
     {
         public void Process()
         {

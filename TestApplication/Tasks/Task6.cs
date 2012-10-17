@@ -7,7 +7,7 @@ using Gateway.Rules;
 
 namespace TestApplication.Tasks
 {
-    public class Task5 : ITask
+    public class Task5 
     {
         public void Process()
         {

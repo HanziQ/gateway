@@ -58,6 +58,7 @@
     <Compile Include="Tasks\Task5.cs" />
     <Compile Include="Tasks\Task8.cs" />
     <Compile Include="Tasks\Task9.cs" />
+    <Compile Include="Tasks\Tasks.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gateway\Gateway.csproj">

@@ -7,7 +7,7 @@ namespace Gateway
     {
         static Dictionary<Type, string> typeRules = new Dictionary<Type, string>()
         {
-            {typeof(int), "Zadejte číslo."},
+            {typeof(int), "Zadejte celé číslo."},
             {typeof(float), "Zadejte číslo."}
         };
 
