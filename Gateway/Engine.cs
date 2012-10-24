@@ -37,28 +37,23 @@ namespace Gateway
                 int number;
                 if (int.TryParse(line, out number))
                 {
-                    try
-                    {
-                        noTaskFound = true;
-                        foreach (ITaskList taskList in taskLists)
-                        {                            
-                            if (taskList.ProcessTask(number))
-                            {
-                                noTaskFound = false;
-                                break;
-                            }
-                        }
-                        if (noTaskFound)
-                        {
-                            WriteErrorLine("Úloha nebyla nalezena.");
-                            continue;
-                        }
-                        Console.ReadLine();
-                    }
-                    catch (InterruptException)
-                    {
 
+                    noTaskFound = true;
+                    foreach (ITaskList taskList in taskLists)
+                    {
+                        if (taskList.ProcessTask(number))
+                        {
+                            noTaskFound = false;
+                            break;
+                        }
                     }
+                    if (noTaskFound)
+                    {
+                        WriteErrorLine("Úloha nebyla nalezena.");
+                        continue;
+                    }
+                    Console.ReadLine();
+
                     Console.Clear();
                     writeHeader = true;
                 }

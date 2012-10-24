@@ -53,14 +53,9 @@ namespace Gateway
             while (true)
             {
                 string input;
-                try
-                {
-                    input = Engine.ReadLine();
-                }
-                catch (EscapePressedException)
-                {
-                    throw new InterruptException();
-                }
+
+                input = Engine.ReadLine();
+
                 T value = default(T);
                 try
                 {
