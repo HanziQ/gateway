@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 namespace Gateway
 {
-    public class Input<T> where T : struct
+    public class Input<T>
     {
         static Dictionary<Type, string> typeRules = new Dictionary<Type, string>()
         {
@@ -14,9 +14,19 @@ namespace Gateway
         string message;
         List<Rule<T>> rules = new List<Rule<T>>();
 
+        public static Input<T> Get()
+        {
+            return new Input<T>();
+        }
+
         public static Input<T> Get(string message)
         {
             return new Input<T>(message);
+        }
+
+        private Input()
+        {
+
         }
 
         private Input(string message)
@@ -37,7 +47,7 @@ namespace Gateway
 
         public T Process()
         {
-            if (message.Length > 0)
+            if (message != null && message.Length > 0)
                 Console.WriteLine(message);
 
             while (true)

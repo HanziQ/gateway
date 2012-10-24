@@ -205,14 +205,17 @@ namespace TestApplication.Tasks
         {
             Console.WriteLine("Zadejte čísla, ukončete nulou.");
 
-            List<int> nums = new List<int>();
+            int count = 0;
             while (true)
             {
                 int i = Input<int>.Get("").AddRule(IntegerRule.NonNegative);
                 if (i == 0)
                     break;
-                nums.Add(i);
+                if(i % 3 == 0 & i % 2 == 1)
+                    count++;
             }
+
+            Console.WriteLine("Počet lichých násobků tří v dané posloupnosti je " + count + ".");
         }
 
 
@@ -253,6 +256,342 @@ namespace TestApplication.Tasks
             }
             Console.WriteLine("Počet žáků, kteří mají jedničku ze všech tří předmětů je " + same1 + ".");
             Console.WriteLine("Počet žáků, kteří nemají žádnou čtyřku ani pětku je " + zadna45 + ".");
+
+        }
+
+        public void Process27()
+        {
+            Console.WriteLine("Zadejte hodnoty vkladů.");
+            List<float> vklady = new List<float>();
+            while (true)
+            {
+                int i = Input<int>.Get(null).AddRule(IntegerRule.NonZero);
+                if (i < 0)
+                    break;
+                vklady.Add(1.04f * (float)i);
+            }
+
+            Console.WriteLine("Vklady po jednom roce činí:");
+            foreach (float f in vklady)
+            {
+                Console.WriteLine(f.ToString("F2"));
+            }
+        }
+
+        public void Process28()
+        {
+            string input = Input<String>.Get("Zadejte větu.").AddRule(new Rule<String>((s) => { return s[s.Length - 1] == '.'; }, "Věta musí končit tečkou."));
+            input = input.Trim('.', ' ');
+
+            int a = 0;
+            int capital = 0;
+            
+            foreach (char c in input)
+            {
+                if (c == 'a' || c == 'A')
+                    a++;
+                if (char.IsUpper(c))
+                    capital++;
+            }
+
+            Console.WriteLine("Počet slov - " + input.Split(' ').Count());
+            Console.WriteLine("Počet písmen 'a' - " + a);
+            Console.WriteLine("Počet velkých písmen - " + capital);
+        }
+
+        public void Process29()
+        {
+            List<int> cisla = new List<int>();
+            int nejvetsi = int.MinValue;
+            while (true)
+            {
+                int i = Input<int>.Get("").AddRule(IntegerRule.NonNegative);
+                if (i == 0)
+                    break;
+                cisla.Add(i);
+                if (i > nejvetsi)
+                    nejvetsi = i;
+            }
+
+            Console.WriteLine("Počet největších čísel v posloupnosti je - " + cisla.Count((i) => { return i == nejvetsi; }));
+        }
+
+        public void Process30()
+        {
+            int maxInt = 0; ;
+            int maxAbs = int.MinValue;
+            while (true)
+            {
+                int i = Input<int>.Get("");
+                if (i == 0)
+                    break;
+                if (Math.Abs(i) > maxAbs)
+                {
+                    maxInt = i;
+                    maxAbs = Math.Abs(i);
+                }
+            }
+
+            Console.WriteLine("Číslo s největší absolutní hodnotou je - " + maxInt);
+        }
+
+        public void Process31()
+        {
+            List<int> nums = new List<int>();
+            while (true)
+            {
+                int i = Input<int>.Get("");
+                if (i == 0)
+                    break;
+                nums.Add(i);
+            }
+            if (nums.Count == 0)
+                return;
+            int minDist = Math.Abs(100 - nums[0]);
+            List<int> closestNums = new List<int>() {nums[0]};
+            nums.RemoveAt(0);
+            foreach(int k in nums)
+            {
+                if (Math.Abs(100 - k) < minDist)
+                {
+                    minDist = Math.Abs(100 - k);
+                    closestNums.Clear();
+                    closestNums.Add(k);
+                }
+                else if (Math.Abs(100 - k) == minDist)
+                {
+                    if (!closestNums.Contains(k))
+                        closestNums.Add(k);
+                }
+            }
+
+            Console.WriteLine("Čísla nejbližší číslu 100 jsou:");
+            Console.WriteLine(string.Join(", ", closestNums));
+        }
+
+        public void Process32()
+        {
+            List<int> nums = new List<int>();
+            for(int i = 1; i <= 20; i++)
+            {
+                nums.Add(Input<int>.Get(i + ". číslo").AddRule(new Rule<int>((n) => {return !nums.Contains(n);}, "Toto číslo jste už zadali.")));
+            }
+
+            nums.Remove(nums.Max());
+            Console.WriteLine("Druhé největší číslo je " + nums.Max());
+        }
+
+        public void Process33()
+        {
+            string s = Input<string>.Get("Zadejte větu.");
+            SortedDictionary<char, int> counts = new SortedDictionary<char, int>();
+            foreach (char c in s)
+            {
+                if (!char.IsLetter(c))
+                    continue;
+                if (counts.ContainsKey(c))
+                    counts[c]++;
+                else
+                    counts.Add(c, 1);
+            }
+            Console.WriteLine("Četnost písmen:");
+            
+            foreach (KeyValuePair<char, int> pair in counts)
+            {
+                Console.WriteLine(pair.Key + " - " + pair.Value);
+            }
+        }
+
+        public void Process34()
+        {
+            List<List<int>> nums = new List<List<int>>();
+            int w = Input<int>.Get("Zadejte počet sloupců.").AddRule(IntegerRule.Positive);
+            int h = Input<int>.Get("Zadejte počet řádků.").AddRule(IntegerRule.Positive);
+            int maxL = 1;
+            for (int i = 0; i < h; i++)
+            {
+                nums.Add(new List<int>());
+                string line = Input<string>.Get("Zadejte čísla pro řádek " + (i + 1) + ", oddělte čárkou.").AddRule(new Rule<string>((s) => { return s.Split(',').Count() == w; }, "Počet sloupců musí být " + w));
+                foreach (string s in line.Split(','))
+                {
+                    int n;
+                    if (int.TryParse(s, out n))
+                    {
+                        nums[i].Add(n);
+                        if (s.Length > maxL)
+                            maxL = s.Length;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Neplatný vstup.");
+                        return;
+                    }
+                }
+            }
+
+            int lineL = 0;
+            foreach (List<int> line in nums)
+            {
+                string l = "|";
+                foreach (int n in line)
+                {
+                    l += n.ToString().PadLeft(maxL) + "|";
+                }
+                lineL = l.Length;
+                Console.WriteLine(new String('-', lineL));
+                Console.WriteLine(l);
+            }
+            Console.WriteLine(new String('-', lineL));
+        }
+
+        public void Process35()
+        {
+            List<List<int>> nums = new List<List<int>>();
+            int w = Input<int>.Get("Zadejte počet sloupců.").AddRule(IntegerRule.Positive);
+            int h = Input<int>.Get("Zadejte počet řádků.").AddRule(IntegerRule.Positive);
+            int maxL = 1;
+            for (int i = 0; i < h; i++)
+            {
+                nums.Add(new List<int>());
+                string line = Input<string>.Get("Zadejte čísla pro řádek " + (i + 1) + ", oddělte čárkou.").AddRule(new Rule<string>((s) => { return s.Split(',').Count() == w; }, "Počet sloupců musí být " + w));
+                foreach (string s in line.Split(','))
+                {
+                    int n;
+                    if (int.TryParse(s, out n))
+                    {
+                        nums[i].Add(n);
+                        if (s.Length > maxL)
+                            maxL = s.Length;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Neplatný vstup.");
+                        return;
+                    }
+                }
+            }
+
+            //*
+            int lineL = 0;
+            foreach (List<int> line in nums)
+            {
+                string l = "|";
+                foreach (int n in line)
+                {
+                    l += n.ToString().PadLeft(maxL) + "|";
+                }
+                lineL = l.Length;
+                Console.WriteLine(new String('-', lineL));
+                Console.WriteLine(l);
+            }
+            Console.WriteLine(new String('-', lineL));
+            //*/
+            Console.WriteLine();
+            List<List<int>> reverse = new List<List<int>>();
+            for (int i = 0; i < w; i++)
+            {
+                reverse.Add(new List<int>());
+                for (int j = 0; j < h; j++)
+                {
+                    reverse[i].Add(nums[j][i]);
+                }
+            }
+
+            Console.WriteLine("Maxima a minima řádků:");
+            foreach (List<int> line in nums)
+            {
+                Console.WriteLine(line.Max() + " " + line.Min());
+            }
+
+            Console.WriteLine("Maxima a minima sloupců:");
+            foreach (List<int> column in reverse)
+            {
+                Console.WriteLine(column.Max() + " " + column.Min());
+            }
+        }
+
+        public void Process36()
+        {
+            List<List<int>> nums = new List<List<int>>();
+            int size = Input<int>.Get("Zadejte velikost tabulky.").AddRule(IntegerRule.Positive);
+
+            for (int i = 0; i < size; i++)
+            {
+                nums.Add(new List<int>());
+                for (int j = 0; j < size; j++)
+                {
+                    if (j == i)
+                        nums[i].Add(1);
+                    else
+                        nums[i].Add(0);
+                }
+            }
+
+            //*
+            int lineL = 0;
+            foreach (List<int> line in nums)
+            {
+                string l = "|";
+                foreach (int n in line)
+                {
+                    l += n + "|";
+                }
+                lineL = l.Length;
+                Console.WriteLine(new String('-', lineL));
+                Console.WriteLine(l);
+            }
+            Console.WriteLine(new String('-', lineL));
+            //*/
+        }
+        public void Process37()
+        {
+            List<List<int>> nums = new List<List<int>>();
+            int size = Input<int>.Get("Zadejte velikost tabulky.").AddRule(IntegerRule.Positive);
+            int maxL = 1;
+            for (int i = 0; i < size; i++)
+            {
+                nums.Add(new List<int>());
+                string line = Input<string>.Get("Zadejte čísla pro řádek " + (i + 1) + ", oddělte čárkou.").AddRule(new Rule<string>((s) => { return s.Split(',').Count() == size; }, "Počet sloupců musí být " + size));
+                foreach (string s in line.Split(','))
+                {
+                    int n;
+                    if (int.TryParse(s, out n))
+                    {
+                        nums[i].Add(n);
+                        if (s.Length > maxL)
+                            maxL = s.Length;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Neplatný vstup.");
+                        return;
+                    }
+                }
+            }
+
+            for (int i = 0; i < size; i++)
+            {
+                int temp = nums[i][i];
+                nums[i][i] = nums[i][size - i - 1];
+                nums[i][size - i - 1] = temp;
+            }
+
+
+            //*
+            int lineL = 0;
+            foreach (List<int> line in nums)
+            {
+                string l = "|";
+                foreach (int n in line)
+                {
+                    l += n + "|";
+                }
+                lineL = l.Length;
+                Console.WriteLine(new String('-', lineL));
+                Console.WriteLine(l);
+            }
+            Console.WriteLine(new String('-', lineL));
+            //*/
 
         }
     }

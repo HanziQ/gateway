@@ -4,7 +4,7 @@ namespace Gateway
 {
     public interface IRule { }
 
-    public class Rule<T> : IRule where T : struct 
+    public class Rule<T> : IRule
     {
         string message;
         Predicate<T> predicate;
