@@ -43,8 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IntegerTable.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Table.cs" />
     <Compile Include="Tasks\Task10.cs" />
     <Compile Include="Tasks\Task11.cs" />
     <Compile Include="Tasks\Task12.cs" />

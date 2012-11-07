@@ -80,10 +80,10 @@ namespace TestApplication.Tasks
         }
 
         Int64[] factors64 = { 0, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800, 39916800, 479001600, 6227020800, 87178291200, 1307674368000, 20922789888000, 355687428096000, 6402373705728000, 121645100408832000, 2432902008176640000 };
-            
+
         public void Process18()
         {
-            int n = Input<int>.Get("Zadejte n pro n!.").AddRule(IntegerRule.Positive).AddRule(new Rule<int>((i) => {return i <= 20; }, "n musí být menší než 21 (kvůli limitu velikosti čísla)"));
+            int n = Input<int>.Get("Zadejte n pro n!.").AddRule(IntegerRule.Positive).AddRule(new Rule<int>((i) => { return i <= 20; }, "n musí být menší než 21 (kvůli limitu velikosti čísla)"));
             Console.WriteLine("n! = " + factors64[n]);
         }
 
@@ -174,7 +174,7 @@ namespace TestApplication.Tasks
             for (int i = 1; i < n; i++)
             {
                 bool pass = true;
-                foreach(int d in Array.ConvertAll<string, int>(Regex.Split(i.ToString(), @"(?!^)(?!$)"), str => int.Parse(str)))
+                foreach (int d in Array.ConvertAll<string, int>(Regex.Split(i.ToString(), @"(?!^)(?!$)"), str => int.Parse(str)))
                 {
                     if (d != 2 & d != 3 & d != 5)
                         pass = false;
@@ -211,7 +211,7 @@ namespace TestApplication.Tasks
                 int i = Input<int>.Get("").AddRule(IntegerRule.NonNegative);
                 if (i == 0)
                     break;
-                if(i % 3 == 0 & i % 2 == 1)
+                if (i % 3 == 0 & i % 2 == 1)
                     count++;
             }
 
@@ -229,10 +229,10 @@ namespace TestApplication.Tasks
             while (true)
             {
                 Console.WriteLine("Zadejte známky pro žáka " + n);
-                int c = Input<int>.Get("CJL").AddRule(IntegerRule.NonNegative).AddRule(new Rule<int>((z) => {return z <= 5; }, "Známka musí být menší než 6."));
+                int c = Input<int>.Get("CJL").AddRule(IntegerRule.NonNegative).AddRule(new Rule<int>((z) => { return z <= 5; }, "Známka musí být menší než 6."));
                 int m = Input<int>.Get("MAT").AddRule(IntegerRule.NonNegative).AddRule(new Rule<int>((z) => { return z <= 5; }, "Známka musí být menší než 6."));
                 int a = Input<int>.Get("ANJ").AddRule(IntegerRule.NonNegative).AddRule(new Rule<int>((z) => { return z <= 5; }, "Známka musí být menší než 6."));
-                if(c == 0 & m == 0 & a == 0)
+                if (c == 0 & m == 0 & a == 0)
                     break;
                 cjl.Add(c);
                 mat.Add(m);
@@ -285,7 +285,7 @@ namespace TestApplication.Tasks
 
             int a = 0;
             int capital = 0;
-            
+
             foreach (char c in input)
             {
                 if (c == 'a' || c == 'A')
@@ -348,9 +348,9 @@ namespace TestApplication.Tasks
             if (nums.Count == 0)
                 return;
             int minDist = Math.Abs(100 - nums[0]);
-            List<int> closestNums = new List<int>() {nums[0]};
+            List<int> closestNums = new List<int>() { nums[0] };
             nums.RemoveAt(0);
-            foreach(int k in nums)
+            foreach (int k in nums)
             {
                 if (Math.Abs(100 - k) < minDist)
                 {
@@ -372,9 +372,9 @@ namespace TestApplication.Tasks
         public void Process32()
         {
             List<int> nums = new List<int>();
-            for(int i = 1; i <= 20; i++)
+            for (int i = 1; i <= 20; i++)
             {
-                nums.Add(Input<int>.Get(i + ". číslo").AddRule(new Rule<int>((n) => {return !nums.Contains(n);}, "Toto číslo jste už zadali.")));
+                nums.Add(Input<int>.Get(i + ". číslo").AddRule(new Rule<int>((n) => { return !nums.Contains(n); }, "Toto číslo jste už zadali.")));
             }
 
             nums.Remove(nums.Max());
@@ -395,7 +395,7 @@ namespace TestApplication.Tasks
                     counts.Add(c, 1);
             }
             Console.WriteLine("Četnost písmen:");
-            
+
             foreach (KeyValuePair<char, int> pair in counts)
             {
                 Console.WriteLine(pair.Key + " - " + pair.Value);
@@ -404,195 +404,196 @@ namespace TestApplication.Tasks
 
         public void Process34()
         {
-            List<List<int>> nums = new List<List<int>>();
             int w = Input<int>.Get("Zadejte počet sloupců.").AddRule(IntegerRule.Positive);
             int h = Input<int>.Get("Zadejte počet řádků.").AddRule(IntegerRule.Positive);
-            int maxL = 1;
+
+            IntegerTable table = new IntegerTable(w, h);
+
             for (int i = 0; i < h; i++)
             {
-                nums.Add(new List<int>());
                 string line = Input<string>.Get("Zadejte čísla pro řádek " + (i + 1) + ", oddělte čárkou.").AddRule(new Rule<string>((s) => { return s.Split(',').Count() == w; }, "Počet sloupců musí být " + w));
+
+                int column = 0;
                 foreach (string s in line.Split(','))
                 {
                     int n;
                     if (int.TryParse(s, out n))
                     {
-                        nums[i].Add(n);
-                        if (s.Length > maxL)
-                            maxL = s.Length;
+                        table[i, column] = n;
                     }
                     else
                     {
                         Console.WriteLine("Neplatný vstup.");
                         return;
                     }
+                    column++;
                 }
             }
 
-            int lineL = 0;
-            foreach (List<int> line in nums)
-            {
-                string l = "|";
-                foreach (int n in line)
-                {
-                    l += n.ToString().PadLeft(maxL) + "|";
-                }
-                lineL = l.Length;
-                Console.WriteLine(new String('-', lineL));
-                Console.WriteLine(l);
-            }
-            Console.WriteLine(new String('-', lineL));
+            table.PrintToConsole();
         }
 
         public void Process35()
         {
-            List<List<int>> nums = new List<List<int>>();
             int w = Input<int>.Get("Zadejte počet sloupců.").AddRule(IntegerRule.Positive);
             int h = Input<int>.Get("Zadejte počet řádků.").AddRule(IntegerRule.Positive);
-            int maxL = 1;
+
+            IntegerTable table = new IntegerTable(h, w);
+
             for (int i = 0; i < h; i++)
             {
-                nums.Add(new List<int>());
                 string line = Input<string>.Get("Zadejte čísla pro řádek " + (i + 1) + ", oddělte čárkou.").AddRule(new Rule<string>((s) => { return s.Split(',').Count() == w; }, "Počet sloupců musí být " + w));
+
+                int column = 0;
                 foreach (string s in line.Split(','))
                 {
                     int n;
                     if (int.TryParse(s, out n))
                     {
-                        nums[i].Add(n);
-                        if (s.Length > maxL)
-                            maxL = s.Length;
+                        table[i, column] = n;
                     }
                     else
                     {
                         Console.WriteLine("Neplatný vstup.");
                         return;
                     }
+                    column++;
                 }
             }
 
-            //*
-            int lineL = 0;
-            foreach (List<int> line in nums)
-            {
-                string l = "|";
-                foreach (int n in line)
-                {
-                    l += n.ToString().PadLeft(maxL) + "|";
-                }
-                lineL = l.Length;
-                Console.WriteLine(new String('-', lineL));
-                Console.WriteLine(l);
-            }
-            Console.WriteLine(new String('-', lineL));
-            //*/
-            Console.WriteLine();
-            List<List<int>> reverse = new List<List<int>>();
-            for (int i = 0; i < w; i++)
-            {
-                reverse.Add(new List<int>());
-                for (int j = 0; j < h; j++)
-                {
-                    reverse[i].Add(nums[j][i]);
-                }
-            }
-
-            Console.WriteLine("Maxima a minima řádků:");
-            foreach (List<int> line in nums)
-            {
-                Console.WriteLine(line.Max() + " " + line.Min());
-            }
-
-            Console.WriteLine("Maxima a minima sloupců:");
-            foreach (List<int> column in reverse)
-            {
-                Console.WriteLine(column.Max() + " " + column.Min());
-            }
+            table.PrintToConsoleWithMaxMin();
         }
 
         public void Process36()
         {
-            List<List<int>> nums = new List<List<int>>();
             int size = Input<int>.Get("Zadejte velikost tabulky.").AddRule(IntegerRule.Positive);
+
+            IntegerTable table = new IntegerTable(size);
 
             for (int i = 0; i < size; i++)
             {
-                nums.Add(new List<int>());
                 for (int j = 0; j < size; j++)
                 {
                     if (j == i)
-                        nums[i].Add(1);
+                        table[j, i] = 1;
                     else
-                        nums[i].Add(0);
+                        table[j, i] = 0;
                 }
             }
 
-            //*
-            int lineL = 0;
-            foreach (List<int> line in nums)
-            {
-                string l = "|";
-                foreach (int n in line)
-                {
-                    l += n + "|";
-                }
-                lineL = l.Length;
-                Console.WriteLine(new String('-', lineL));
-                Console.WriteLine(l);
-            }
-            Console.WriteLine(new String('-', lineL));
-            //*/
+            table.PrintToConsole();
         }
         public void Process37()
         {
-            List<List<int>> nums = new List<List<int>>();
             int size = Input<int>.Get("Zadejte velikost tabulky.").AddRule(IntegerRule.Positive);
-            int maxL = 1;
+            IntegerTable table = new IntegerTable(size);
             for (int i = 0; i < size; i++)
             {
-                nums.Add(new List<int>());
                 string line = Input<string>.Get("Zadejte čísla pro řádek " + (i + 1) + ", oddělte čárkou.").AddRule(new Rule<string>((s) => { return s.Split(',').Count() == size; }, "Počet sloupců musí být " + size));
+                int column = 0;
                 foreach (string s in line.Split(','))
                 {
                     int n;
                     if (int.TryParse(s, out n))
                     {
-                        nums[i].Add(n);
-                        if (s.Length > maxL)
-                            maxL = s.Length;
+                        table[i, column] = n;
                     }
                     else
                     {
                         Console.WriteLine("Neplatný vstup.");
                         return;
                     }
+                    column++;
                 }
             }
 
             for (int i = 0; i < size; i++)
             {
-                int temp = nums[i][i];
-                nums[i][i] = nums[i][size - i - 1];
-                nums[i][size - i - 1] = temp;
+                int temp = table[i, i];
+                table[i, i] = table[i, size - i - 1];
+                table[i, size - i - 1] = temp;
             }
 
 
-            //*
-            int lineL = 0;
-            foreach (List<int> line in nums)
+            table.PrintToConsole();
+        }
+
+        public void Process38()
+        {
+            int size = Input<int>.Get("Zadejte velikost tabulky.").AddRule(IntegerRule.Positive);
+            IntegerTable table = new IntegerTable(size);
+
+            int row = 0, col = -1;
+            int value = 1;
+
+            bool horizontal = true;
+            bool increasing = true;
+            bool finished = false;
+
+            while (!finished)
             {
-                string l = "|";
-                foreach (int n in line)
+
+                finished = true;
+                if (horizontal && increasing)
                 {
-                    l += n + "|";
+                    while (tryAndSet(table, row, col + 1, value))
+                    {
+                        finished = false;
+                        col++;
+                        value++;
+                    }
                 }
-                lineL = l.Length;
-                Console.WriteLine(new String('-', lineL));
-                Console.WriteLine(l);
+                else if (horizontal && !increasing)
+                {
+                    while (tryAndSet(table, row, col - 1, value))
+                    {
+                        finished = false;
+                        col--;
+                        value++;
+                    }
+                }
+                else if (!horizontal && increasing)
+                {
+                    while (tryAndSet(table, row + 1, col, value))
+                    {
+                        finished = false;
+                        row++;
+                        value++;
+                    }
+                }
+                else
+                {
+                    while (tryAndSet(table, row - 1, col, value))
+                    {
+                        finished = false;
+                        row--;
+                        value++;
+                    }
+                }
+
+                if (!horizontal)
+                {
+                    increasing = !increasing;
+                }
+                horizontal = !horizontal;
             }
-            Console.WriteLine(new String('-', lineL));
-            //*/
+            table.PrintToConsole();
+        }
+
+        private bool tryAndSet(IntegerTable table, int row, int col, int value)
+        {
+            if (row < 0 || col < 0 || row >= table.Height || col >= table.Width || table[row, col] != 0)
+            {
+                return false;
+            }
+            table[row, col] = value;
+            return true;
+        }
+
+        public void Process39()
+        {
 
         }
+
     }
 }
