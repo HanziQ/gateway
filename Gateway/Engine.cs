@@ -24,6 +24,8 @@ namespace Gateway
 
         public static void Start()
         {
+            Console.WindowWidth = 120;
+
             Console.OutputEncoding = Encoding.UTF8;
 
             while (true)

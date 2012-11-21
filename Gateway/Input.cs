@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using Gateway.Rules;
 namespace Gateway
 {
     public class Input<T>

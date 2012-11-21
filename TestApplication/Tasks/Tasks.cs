@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Gateway;
 using Gateway.Rules;
 using System.Text.RegularExpressions;
+using System.Globalization;
+using Gateway;
+using System.Numerics;
 
 namespace TestApplication.Tasks
 {
@@ -592,8 +594,235 @@ namespace TestApplication.Tasks
 
         public void Process39()
         {
-
+            string veta = Input<string>.Get("Zadejte větu.").AddRule(StringRule.NotEmpty);
+            string[] data = veta.Split(' ');
+            int longest = 0;
+            List<string> longestStrings = new List<string>();
+            foreach (string s in data)
+            {
+                string d = s.Trim(' ', ',', '.', '!', '?');
+                if (d.Length > longest)
+                    longestStrings.Add(d);
+                else if (d.Length == longest)
+                {
+                    longestStrings.Clear();
+                    longestStrings.Add(d);
+                }
+                Console.WriteLine(d + " - " + d.Length);
+            }
+            Console.WriteLine();
+            Console.WriteLine("Nejdelší:");
+            foreach (string w in longestStrings)
+            {
+                Console.WriteLine("\t" + w + " - " + w.Length);
+            }
         }
 
+        public void Process40()
+        {
+            string datum = Input<string>.Get("Zadejte větu.").AddRule(StringRule.NotEmpty);
+            DateTime dt;
+            if (DateTime.TryParse(datum, new CultureInfo("cs-CZ"), DateTimeStyles.None, out dt))
+            {
+                Console.WriteLine(dt.ToString("D"));
+            }
+            else
+            {
+                Console.WriteLine("Datum je ve špatném formátu.");
+            }
+        }
+
+        public void Process41()
+        {
+            string jm = Input<string>.Get("Zadejte jméno a příjmení.").AddRule(StringRule.NotEmpty);
+            string[] data = jm.Split(' ');
+            if (data.Length == 2)
+            {
+                Console.WriteLine("Jméno - " + data[0]);
+                Console.WriteLine("Příjmení - " + data[1]);
+            }
+            else
+            {
+                Console.WriteLine("Zadali jste jméno a příjmení ve špatném formátu.");
+            }
+        }
+
+        public void Process42()
+        {
+            string input = Input<string>.Get("Zadejte větu pro šifrování.");
+            int key = Input<int>.Get("Zadejte číslo pro Caesarovu šifru (1-25).").AddRule(IntegerRule.GetRange(1, 25));
+
+            char[] buffer = input.ToCharArray();
+            for (int i = 0; i < buffer.Length; i++)
+            {
+                char letter = buffer[i];
+
+                letter = (char)(letter + key);
+
+                if (letter > 'z')
+                {
+                    letter = (char)(letter - 26);
+                }
+                else if (letter < 'a')
+                {
+                    letter = (char)(letter + 26);
+                }
+                buffer[i] = letter;
+            }
+            Console.WriteLine(input);
+            Console.WriteLine(new string(buffer));
+        }
+
+        public void Process43()
+        {
+            char[] samohl = "bcčdďfghjklmnňpqrřsštťvwxzž".ToCharArray();
+            string input = Input<string>.Get("Zadejte větu.").AddRule(StringRule.NotEmpty);
+            List<string> dvoj = new List<string>();
+            for (int i = 0; i < input.Length - 1; i++)
+            {
+                if (samohl.Contains(input[i]) && samohl.Contains(input[i + 1]))
+                {
+                    dvoj.Add(input[i].ToString() + input[i + 1].ToString());
+                }
+            }
+            Console.WriteLine("Počet dvojic - " + dvoj.Count);
+            Console.WriteLine(string.Join(",", dvoj));
+        }
+
+        public void Process44()
+        {
+            char[] allowed = "bcčdďfghjklmnňpqrřsštťvwxzž".ToCharArray();
+            string input = Input<string>.Get("Zadejte větu.").AddRule(StringRule.NotEmpty);
+            foreach (char c in allowed)
+            {
+                input = input.Replace(c, ' ');
+            }
+            Console.WriteLine(input);
+        }
+
+        public struct ComplexNumber
+        {
+            public int real;
+            public int imaginary;
+
+            public ComplexNumber(int real, int imaginary)
+            {
+                this.real = real;
+                this.imaginary = imaginary;
+            }
+
+            public static ComplexNumber operator +(ComplexNumber c1, ComplexNumber c2)
+            {
+                return new ComplexNumber(c1.real + c2.real, c1.imaginary + c2.imaginary);
+            }
+
+            public static ComplexNumber operator -(ComplexNumber c1, ComplexNumber c2)
+            {
+                return new ComplexNumber(c1.real - c2.real, c1.imaginary - c2.imaginary);
+            }
+
+            public override string ToString()
+            {
+                return (String.Format("{0} + {1}i", real, imaginary));
+            }
+        }
+
+        Complex ParseComplex(string input)
+        {
+            if(input.Contains('+'))
+            {
+                string[] data = input.Split('+');
+                return new Complex(int.Parse(data[0]), int.Parse(data[1].Replace('i', ' ')));
+            }
+            else if (input.Contains('-'))
+            {
+                string[] data = input.Split('-');
+                return new Complex(int.Parse(data[0]), -int.Parse(data[1].Replace('i', ' ')));
+            }
+            else if (input.Contains('i'))
+            {
+                return new Complex(0, int.Parse(input.Replace('i', ' ')));
+            }
+            else
+            {
+                return new Complex(int.Parse(input), 0);
+            }
+        }
+
+        public void Process45()
+        {
+            Console.WriteLine("Povolené operace - 1 = sčítání, 2 = odčítání, 3 = násobení, 4 = dělení");
+            int i = Input<int>.Get("Zadejte číslo operace.").AddRule(IntegerRule.GetRange(1, 4));
+            do
+            {
+                try
+                {
+                    string a = Input<string>.Get("Zadejte komplexní číslo ve tvaru a + bi.").AddRule(StringRule.NotEmpty);
+                    Complex ac = ParseComplex(a);
+                }
+                catch (Exception e)
+                {
+                    continue;
+                }
+            }
+            while (true);
+        }
+
+        struct Osoba
+        {
+            public string jmeno, prijmeni, ulice, mesto;
+            public DateTime datumNarozeni;
+        }
+
+        public void Process46()
+        {
+            List<Osoba> osoby = new List<Osoba>();
+            int count = Input<int>.Get("Zadejte počet osob.").AddRule(IntegerRule.Positive);
+            for (int i = 1; i <= count; i++)
+            {
+                Osoba o = new Osoba();
+                o.jmeno = Input<string>.Get("Zadejte jméno pro osobu č." + i).AddRule(StringRule.NotEmpty);
+                o.prijmeni = Input<string>.Get("Zadejte příjmení pro osobu č." + i).AddRule(StringRule.NotEmpty);
+                o.ulice = Input<string>.Get("Zadejte ulici pro osobu č." + i).AddRule(StringRule.NotEmpty);
+                o.mesto = Input<string>.Get("Zadejte město pro osobu č." + i).AddRule(StringRule.NotEmpty);
+
+                bool succeeded;
+                do
+                {
+                    succeeded = false;
+                    string datum = Input<string>.Get("Zadejte datum narození pro osobu č." + i).AddRule(StringRule.NotEmpty);
+                    DateTime dt;
+                    if (DateTime.TryParse(datum, new CultureInfo("cs-CZ"), DateTimeStyles.None, out dt))
+                    {
+                        succeeded = true;
+                        o.datumNarozeni = dt;
+                    }
+                }
+                while (!succeeded);
+
+                osoby.Add(o);
+            }
+
+            Table<string> t = new Table<string>(count + 1, 6);
+            t[0, 0] = "ID";
+            t[0, 1] = "Jméno";
+            t[0, 2] = "Příjmení";
+            t[0, 3] = "Datum narození";
+            t[0, 4] = "Ulice";
+            t[0, 5] = "Město";
+
+            for (int i = 1; i <= osoby.Count; i++)
+            {
+                Osoba o = osoby[i - 1];
+                t[i, 0] = (i).ToString();
+                t[i, 1] = o.jmeno;
+                t[i, 2] = o.prijmeni;
+                t[i, 3] = o.datumNarozeni.ToString("d");
+                t[i, 4] = o.ulice;
+                t[i, 5] = o.mesto;
+            }
+
+            t.PrintToConsole();
+        }
     }
 }

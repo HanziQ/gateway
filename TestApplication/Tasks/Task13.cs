@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Gateway;
+using Gateway.Rules;
 
 namespace TestApplication.Tasks
 {

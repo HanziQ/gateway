@@ -1,6 +1,6 @@
 ﻿
 using System;
-namespace Gateway
+namespace Gateway.Rules
 {
     public interface IRule { }
 

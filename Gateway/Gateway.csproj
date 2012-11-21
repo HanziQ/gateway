@@ -44,9 +44,10 @@
     <Compile Include="Input.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rule.cs" />
+    <Compile Include="Rules\Rule.cs" />
     <Compile Include="Rules\FloatRule.cs" />
     <Compile Include="Rules\IntegerRule.cs" />
+    <Compile Include="Rules\StringRule.cs" />
     <Compile Include="TaskList\ITaskList.cs" />
     <Compile Include="TaskList\ReflectionTaskList.cs" />
   </ItemGroup>

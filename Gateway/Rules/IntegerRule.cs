@@ -1,4 +1,5 @@
 ﻿
+using System;
 namespace Gateway.Rules
 {
     public class IntegerRule
@@ -9,5 +10,12 @@ namespace Gateway.Rules
         public static Rule<int> NonNegative = new Rule<int>((i) => i >= 0, "Zadané číslo musí být nezáporné.");
         public static Rule<int> Zero = new Rule<int>((i) => i == 0, "Zadané číslo musí být nula.");
         public static Rule<int> NonZero = new Rule<int>((i) => i != 0, "Zadané číslo nesmí být nula.");
+
+        public static Rule<int> GetRange(int lower, int higher)
+        {
+            if (lower > higher)
+                throw new Exception("Wrong range for rule.");
+            return new Rule<int>((i) => { return i >= lower && i <= higher; }, string.Format("Číslo musí být v intervalu <{0},{1}>", lower, higher));
+        }
     }
 }
