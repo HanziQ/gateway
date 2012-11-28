@@ -7,6 +7,8 @@ using System.Text.RegularExpressions;
 using System.Globalization;
 using Gateway;
 using System.Numerics;
+using System.IO;
+using System.Security.Cryptography;
 
 namespace TestApplication.Tasks
 {
@@ -601,10 +603,11 @@ namespace TestApplication.Tasks
             foreach (string s in data)
             {
                 string d = s.Trim(' ', ',', '.', '!', '?');
-                if (d.Length > longest)
+                if (d.Length == longest)
                     longestStrings.Add(d);
-                else if (d.Length == longest)
+                else if (d.Length > longest)
                 {
+                    longest = d.Length;
                     longestStrings.Clear();
                     longestStrings.Add(d);
                 }
@@ -700,52 +703,53 @@ namespace TestApplication.Tasks
             Console.WriteLine(input);
         }
 
-        public struct ComplexNumber
+        public class ComplexFormatter : IFormatProvider, ICustomFormatter
         {
-            public int real;
-            public int imaginary;
-
-            public ComplexNumber(int real, int imaginary)
+            public object GetFormat(Type formatType)
             {
-                this.real = real;
-                this.imaginary = imaginary;
+                if (formatType == typeof(ICustomFormatter))
+                    return this;
+                else
+                    return null;
             }
 
-            public static ComplexNumber operator +(ComplexNumber c1, ComplexNumber c2)
+            public string Format(string format, object arg,
+                                 IFormatProvider provider)
             {
-                return new ComplexNumber(c1.real + c2.real, c1.imaginary + c2.imaginary);
-            }
-
-            public static ComplexNumber operator -(ComplexNumber c1, ComplexNumber c2)
-            {
-                return new ComplexNumber(c1.real - c2.real, c1.imaginary - c2.imaginary);
-            }
-
-            public override string ToString()
-            {
-                return (String.Format("{0} + {1}i", real, imaginary));
-            }
-        }
-
-        Complex ParseComplex(string input)
-        {
-            if(input.Contains('+'))
-            {
-                string[] data = input.Split('+');
-                return new Complex(int.Parse(data[0]), int.Parse(data[1].Replace('i', ' ')));
-            }
-            else if (input.Contains('-'))
-            {
-                string[] data = input.Split('-');
-                return new Complex(int.Parse(data[0]), -int.Parse(data[1].Replace('i', ' ')));
-            }
-            else if (input.Contains('i'))
-            {
-                return new Complex(0, int.Parse(input.Replace('i', ' ')));
-            }
-            else
-            {
-                return new Complex(int.Parse(input), 0);
+                if (arg is Complex)
+                {
+                    Complex c1 = (Complex)arg;
+                    // Check if the format string has a precision specifier. 
+                    int precision;
+                    string fmtString = String.Empty;
+                    if (format.Length > 1)
+                    {
+                        try
+                        {
+                            precision = Int32.Parse(format.Substring(1));
+                        }
+                        catch (FormatException)
+                        {
+                            precision = 0;
+                        }
+                        fmtString = "N" + precision.ToString();
+                    }
+                    if (format.Substring(0, 1).Equals("I", StringComparison.OrdinalIgnoreCase))
+                        return c1.Real.ToString(fmtString) + " + " + c1.Imaginary.ToString(fmtString) + "i";
+                    else if (format.Substring(0, 1).Equals("J", StringComparison.OrdinalIgnoreCase))
+                        return c1.Real.ToString(fmtString) + " + " + c1.Imaginary.ToString(fmtString) + "j";
+                    else
+                        return c1.ToString(format, provider);
+                }
+                else
+                {
+                    if (arg is IFormattable)
+                        return ((IFormattable)arg).ToString(format, provider);
+                    else if (arg != null)
+                        return arg.ToString();
+                    else
+                        return String.Empty;
+                }
             }
         }
 
@@ -753,19 +757,35 @@ namespace TestApplication.Tasks
         {
             Console.WriteLine("Povolené operace - 1 = sčítání, 2 = odčítání, 3 = násobení, 4 = dělení");
             int i = Input<int>.Get("Zadejte číslo operace.").AddRule(IntegerRule.GetRange(1, 4));
-            do
+            float a1 = Input<float>.Get("Zadejte a pro 1. komplexní číslo ve tvaru a + bi.");
+            float b1 = Input<float>.Get("Zadejte b pro 1. komplexní číslo ve tvaru a + bi.");
+            Complex c1 = new Complex(a1, b1);
+            Console.WriteLine(string.Format(new ComplexFormatter(), "{0:I2}", c1));
+
+            float a2 = Input<float>.Get("Zadejte a pro 2. komplexní číslo ve tvaru a + bi.");
+            float b2 = Input<float>.Get("Zadejte b pro 2. komplexní číslo ve tvaru a + bi.");
+            Complex c2 = new Complex(a2, b2);
+            Console.WriteLine(string.Format(new ComplexFormatter(), "{0:I2}", c2));
+
+            Complex c3 = Complex.Zero;
+
+            switch (i)
             {
-                try
-                {
-                    string a = Input<string>.Get("Zadejte komplexní číslo ve tvaru a + bi.").AddRule(StringRule.NotEmpty);
-                    Complex ac = ParseComplex(a);
-                }
-                catch (Exception e)
-                {
-                    continue;
-                }
+                case 1:
+                    c3 = c1 + c2;
+                    break;
+                case 2:
+                    c3 = c1 - c2;
+                    break;
+                case 3:
+                    c3 = c1 * c2;
+                    break;
+                case 4:
+                    c3 = c1 / c2;
+                    break;
             }
-            while (true);
+            Console.WriteLine("Výsledek je:");
+            Console.WriteLine(string.Format(new ComplexFormatter(), "{0:I2}", c3));
         }
 
         struct Osoba
@@ -824,5 +844,80 @@ namespace TestApplication.Tasks
 
             t.PrintToConsole();
         }
+
+        public void Process47()
+        {
+            StreamWriter sw = File.CreateText("a.txt");
+            Random r = new Random();
+            sw.Write(BitConverter.ToString(SHA256Managed.Create().ComputeHash(Encoding.UTF8.GetBytes(r.Next().ToString()))));
+            sw.Close();
+            File.Copy("a.txt", "b.txt");
+        }
+
+        public void Process48()
+        {
+            StreamWriter sw = File.CreateText("a.txt");
+            sw.Write("Lorem ipsum dolor sit amet, consectetur adipiscing elit.\r\nVestibulum vulputate massa sed justo tincidunt a ultrices mauris bibendum.\r\nDuis justo tortor, posuere at dignissim id, tempor in massa.\r\nNulla tempus facilisis diam at aliquam.\r\nPhasellus nisl ante, iaculis vitae tristique at, molestie vitae orci.\r\nSed fringilla, justo eget ultrices aliquet, diam lorem bibendum augue, sed mollis eros quam non sem.\r\nDonec tincidunt urna quis ante feugiat facilisis.\r\nNullam diam massa, ornare vitae viverra sit amet, pellentesque non mi.\r\nQuisque fermentum nisl sed massa porta vitae porta turpis scelerisque.\r\nQuisque tellus quam, molestie vitae aliquet vitae, ultricies vel ligula.\r\nProin ac felis eget risus aliquam scelerisque.");
+            sw.Close();
+            string text = File.ReadAllText("a.txt");
+            sw = File.CreateText("b.txt");
+            sw.Write(new string(text.Where(c => " aeiouyAEIOUY".Contains(c)).ToArray()));
+            sw.Close();
+        }
+
+        public void Process49()
+        {
+            StreamWriter sw = File.CreateText("a.txt");
+            sw.Write("ab\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit.\r\nVestibulum vulputate massa sed justo tincidunt a ultrices mauris bibendum.\r\nDuis justo tortor, posuere at dignissim id, tempor in massa.\r\nNulla tempus facilisis diam at aliquam.\r\nPhasellus nisl ante, iaculis vitae tristique at, molestie vitae orci.\r\nSed fringilla, justo eget ultrices aliquet, diam lorem bibendum augue, sed mollis eros quam non sem.\r\nDonec tincidunt urna quis ante feugiat facilisis.\r\nNullam diam massa, ornare vitae viverra sit amet, pellentesque non mi.\r\nQuisque fermentum nisl sed massa porta vitae porta turpis scelerisque.\r\nQuisque tellus quam, molestie vitae aliquet vitae, ultricies vel ligula.\r\nProin ac felis eget risus aliquam scelerisque.");
+            sw.Close();
+            string[] lines = File.ReadAllLines("a.txt");
+            sw = File.CreateText("b.txt");
+            foreach (string line in lines)
+            {
+                sw.WriteLine(line.Length.ToString());
+            }
+            sw.Close();
+        }
+
+        public void Process50()
+        {
+            StreamWriter sw = File.CreateText("c.txt");
+            sw.Write(File.ReadAllText("a.txt"));
+            sw.Write(File.ReadAllText("b.txt"));
+            sw.Close();
+        }
+
+        public void Process51()
+        {
+            StreamWriter sw = File.CreateText("a.txt");
+            sw.Write("ab\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit.\r\nVestibulum vulputate massa sed justo tincidunt a ultrices mauris bibendum.\r\nDuis justo tortor, posuere at dignissim id, tempor in massa.\r\nNulla tempus facilisis diam at aliquam.\r\nPhasellus nisl ante, iaculis vitae tristique at, molestie vitae orci.\r\nSed fringilla, justo eget ultrices aliquet, diam lorem bibendum augue, sed mollis eros quam non sem.\r\nDonec tincidunt urna quis ante feugiat facilisis.\r\nNullam diam massa, ornare vitae viverra sit amet, pellentesque non mi.\r\nQuisque fermentum nisl sed massa porta vitae porta turpis scelerisque.\r\nQuisque tellus quam, molestie vitae aliquet vitae, ultricies vel ligula.\r\nProin ac felis eget risus aliquam scelerisque.");
+            sw.Close();
+            string[] lines = File.ReadAllLines("a.txt");
+            sw = File.CreateText("b.txt");
+            foreach (string line in lines)
+            {
+                sw.WriteLine("     " + line);
+            }
+            sw.Close();
+        }
+
+        public void Process52()
+        {
+            int counter = 0;
+            string[] lines = File.ReadAllLines("a.txt");
+            foreach (string line in lines)
+            {
+                counter += line.Split(' ').Count();
+            }
+            Console.WriteLine("Počet slov: " + counter.ToString());
+        }
+
+        public void Process53()
+        {
+            string text = File.ReadAllText("a.txt");
+            int count = text.Length - text.Replace("pes", "fg").Length;
+            Console.WriteLine("Počet instancí slova pes v textu: " + count.ToString());
+        }
+        
     }
 }
