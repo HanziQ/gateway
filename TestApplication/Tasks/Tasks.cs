@@ -918,6 +918,97 @@ namespace TestApplication.Tasks
             int count = text.Length - text.Replace("pes", "fg").Length;
             Console.WriteLine("Počet instancí slova pes v textu: " + count.ToString());
         }
-        
+
+        public void Process54()
+        {
+            float num = Input<float>.Get("Zadejte číslo.");
+            Console.WriteLine("Třetí mocnina = " + (num * num * num).ToString());
+        }
+
+        public void Process55()
+        {
+            float x = Input<float>.Get("Zadejte x.");
+            int n = Input<int>.Get("Zadejte n.");
+            Console.WriteLine("Mocnina (" + x + ")^(" + n + ") je rovna číslu " + Math.Pow(x, n) + ".");
+        }
+
+        public void Process56()
+        {
+            Console.WriteLine("Zadejte 3 celá čísla.");
+            List<int> ints = new List<int>();
+            ints.Add(Input<int>.Get());
+            ints.Add(Input<int>.Get());
+            ints.Add(Input<int>.Get());
+            ints.Sort();
+            Console.WriteLine("Prostřední číslo je: " + ints[1].ToString());
+        }
+
+        public int gcd(int a, int b)
+        {
+            int t;
+            while (b != 0)
+            {
+                t = b;
+                b = a % t;
+                a = t;
+            }
+            return a;
+        }
+
+        public int lcm(int a, int b)
+        {
+            return (a * b) / gcd(a, b);
+        }
+
+        public void Process57()
+        {
+            int a = Input<int>.Get("Zadejte číslo a.").AddRule(IntegerRule.Positive);
+            int b = Input<int>.Get("Zadejte číslo b.").AddRule(IntegerRule.Positive);
+            Console.WriteLine("LSM(a, b) = " + lcm(a, b).ToString());
+        }
+
+        public void Process58()
+        {
+            int a = Input<int>.Get("Zadejte číslo a.").AddRule(IntegerRule.Positive);
+            int b = Input<int>.Get("Zadejte číslo b.").AddRule(IntegerRule.Positive);
+            Console.WriteLine("GCD(a, b) = " + gcd(a, b).ToString());
+        }
+
+        public void Process59()
+        {
+            float a = Input<float>.Get("Zadejte číslo a.");
+            float b = Input<float>.Get("Zadejte číslo b.");
+            Complex c = new Complex(a, b);
+            double angle = (180 * c.Phase / Math.PI);
+            Console.WriteLine("[" + (angle >= 0 ? angle : angle + 360) + "°, " + c.Magnitude + "]");
+        }
+
+        public void Process60()
+        {
+            int year = Input<int>.Get("Zadejte rok.").AddRule(new Rule<int>((i) => { return i > 1582; }, "Rok musí být větší než 1582."));
+            Console.WriteLine("Rok " + year + (DateTime.IsLeapYear(year) ? " je " : " není ") + "přestupný.");
+        }
+
+        public void Process61()
+        {
+            int year = Input<int>.Get("Zadejte rok.").AddRule(new Rule<int>((i) => { return i > 1582; }, "Rok musí být větší než 1582."));
+            int dayInYear = Input<int>.Get("Zadejte pořadové číslo dne.").AddRule(IntegerRule.Positive).AddRule(new Rule<int>((i) => { return i < (DateTime.IsLeapYear(year) ? 367 : 366); }, "Pořadové číslo musí být menší než " + (DateTime.IsLeapYear(year) ? 367 : 366) + "."));
+            DateTime dt = new DateTime(year, 1, 1);
+            
+            Console.WriteLine(dt.AddDays(dayInYear - 1).ToShortDateString());
+        }
+
+        public void Process62()
+        {
+            int num = Input<int>.Get("Zadejte číslo.").AddRule(IntegerRule.NonNegative);
+            char[] nums = num.ToString().ToCharArray();
+            Array.Reverse(nums);
+            Console.WriteLine(new string(nums));
+        }
+
+        public void Process63()
+        {
+            Hanoi h = new Hanoi();
+        }
     }
 }
