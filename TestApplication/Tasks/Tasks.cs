@@ -955,6 +955,13 @@ namespace TestApplication.Tasks
             return a;
         }
 
+        public int gcdRec(int a, int b)
+        {
+            if (b == 0)
+                return a;
+            return gcdRec(b, a % b);
+        }
+
         public int lcm(int a, int b)
         {
             return (a * b) / gcd(a, b);
@@ -1033,7 +1040,7 @@ namespace TestApplication.Tasks
         {
             int a = Input<int>.Get("Zadejte číslo a.").AddRule(IntegerRule.Positive);
             int b = Input<int>.Get("Zadejte číslo b.").AddRule(IntegerRule.Positive);
-            Console.WriteLine("GCD(a, b) = " + gcd(a, b).ToString());
+            Console.WriteLine("GCD(a, b) = " + gcdRec(a, b).ToString());
         }
 
         private long over(int n, int k)
@@ -1077,7 +1084,7 @@ namespace TestApplication.Tasks
 
         public void Process70()
         {
-            string n = Input<string>.Get("Zadejte číslo pro převod z binární do desítkové soustavy.").AddRule(new Rule<string>((i) => {return i.Replace("1", "").Replace("0", "").Count() == 0;}, "Číslo není správně zadané."));
+            string n = Input<string>.Get("Zadejte číslo pro převod z binární do desítkové soustavy.").AddRule(new Rule<string>((i) => { return i.Replace("1", "").Replace("0", "").Count() == 0; }, "Číslo není správně zadané."));
             Console.WriteLine(Convert.ToInt32(n, 2));
         }
     }
