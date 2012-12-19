@@ -83,7 +83,7 @@ namespace TestApplication.Tasks
             Console.WriteLine("Mocnina (" + x + ")^(" + n + ") je rovna číslu " + Math.Pow(x, n) + ".");
         }
 
-        Int64[] factors64 = { 0, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800, 39916800, 479001600, 6227020800, 87178291200, 1307674368000, 20922789888000, 355687428096000, 6402373705728000, 121645100408832000, 2432902008176640000 };
+        Int64[] factors64 = { 1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800, 39916800, 479001600, 6227020800, 87178291200, 1307674368000, 20922789888000, 355687428096000, 6402373705728000, 121645100408832000, 2432902008176640000 };
 
         public void Process18()
         {
@@ -994,7 +994,7 @@ namespace TestApplication.Tasks
             int year = Input<int>.Get("Zadejte rok.").AddRule(new Rule<int>((i) => { return i > 1582; }, "Rok musí být větší než 1582."));
             int dayInYear = Input<int>.Get("Zadejte pořadové číslo dne.").AddRule(IntegerRule.Positive).AddRule(new Rule<int>((i) => { return i < (DateTime.IsLeapYear(year) ? 367 : 366); }, "Pořadové číslo musí být menší než " + (DateTime.IsLeapYear(year) ? 367 : 366) + "."));
             DateTime dt = new DateTime(year, 1, 1);
-            
+
             Console.WriteLine(dt.AddDays(dayInYear - 1).ToShortDateString());
         }
 
@@ -1008,7 +1008,77 @@ namespace TestApplication.Tasks
 
         public void Process63()
         {
-            Hanoi h = new Hanoi();
+            int count = Input<int>.Get("Zadejte počet disků").AddRule(IntegerRule.GetRange(3, 6));
+            Console.WriteLine("Disky A, B, C");
+            hanoi(count, 'A', 'C', 'B');
+        }
+
+        static void hanoi(int x, char from, char to, char help)
+        {
+            if (x > 0)
+            {
+                hanoi(x - 1, from, help, to);
+                hanoiMove(x, from, to);
+                hanoi(x - 1, help, to, from);
+            }
+
+        }
+
+        static void hanoiMove(int x, char from, char to)
+        {
+            Console.WriteLine(" Disk " + x + " : " + from + " -> " + to);
+        }
+
+        public void Process64()
+        {
+            int a = Input<int>.Get("Zadejte číslo a.").AddRule(IntegerRule.Positive);
+            int b = Input<int>.Get("Zadejte číslo b.").AddRule(IntegerRule.Positive);
+            Console.WriteLine("GCD(a, b) = " + gcd(a, b).ToString());
+        }
+
+        private long over(int n, int k)
+        {
+            return factors64[n] / (factors64[k] * factors64[n - k]);
+        }
+
+        public void Process65()
+        {
+            int n = Input<int>.Get("Zadejte číslo n (počet prvků).").AddRule(IntegerRule.Positive).AddRule(new Rule<int>((i) => { return i <= 20; }, "n musí být menší než 21 (kvůli limitu velikosti čísla)"));
+            int k = Input<int>.Get("Zadejte číslo k (třída).").AddRule(IntegerRule.Positive);
+            Console.WriteLine("Vk(n) = " + factors64[n] / factors64[n - k]);
+        }
+
+        public void Process66()
+        {
+            int n = Input<int>.Get("Zadejte číslo n (počet prvků).").AddRule(IntegerRule.Positive);
+            int k = Input<int>.Get("Zadejte číslo k (třída).").AddRule(IntegerRule.Positive);
+            Console.WriteLine("V'k(n) = " + Math.Pow(n, k));
+        }
+
+        public void Process67()
+        {
+            int n = Input<int>.Get("Zadejte číslo n (počet prvků).").AddRule(IntegerRule.Positive).AddRule(new Rule<int>((i) => { return i <= 20; }, "n musí být menší než 21 (kvůli limitu velikosti čísla)"));
+            int k = Input<int>.Get("Zadejte číslo k (třída).").AddRule(IntegerRule.Positive).AddRule(new Rule<int>((i) => { return i <= 20; }, "k musí být menší než 21 (kvůli limitu velikosti čísla)"));
+            Console.WriteLine("Ck(n) = " + over(n, k));
+        }
+
+        public void Process68()
+        {
+            int n = Input<int>.Get("Zadejte číslo n (počet prvků).").AddRule(IntegerRule.Positive).AddRule(new Rule<int>((i) => { return i <= 20; }, "n musí být menší než 21 (kvůli limitu velikosti čísla)"));
+            int k = Input<int>.Get("Zadejte číslo k (třída).").AddRule(IntegerRule.Positive);
+            Console.WriteLine("C'k(n) = " + over(n + k - 1, k));
+        }
+
+        public void Process69()
+        {
+            int n = Input<int>.Get("Zadejte číslo pro převod z decimální do binární soustavy.");
+            Console.WriteLine(Convert.ToString(n, 2));
+        }
+
+        public void Process70()
+        {
+            string n = Input<string>.Get("Zadejte číslo pro převod z binární do desítkové soustavy.").AddRule(new Rule<string>((i) => {return i.Replace("1", "").Replace("0", "").Count() == 0;}, "Číslo není správně zadané."));
+            Console.WriteLine(Convert.ToInt32(n, 2));
         }
     }
 }
