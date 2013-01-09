@@ -1087,5 +1087,105 @@ namespace TestApplication.Tasks
             string n = Input<string>.Get("Zadejte číslo pro převod z binární do desítkové soustavy.").AddRule(new Rule<string>((i) => { return i.Replace("1", "").Replace("0", "").Count() == 0; }, "Číslo není správně zadané."));
             Console.WriteLine(Convert.ToInt32(n, 2));
         }
+
+        int[] perfectN = new int[] { 2, 3, 5, 7, 13 };
+
+        public void Process71()
+        {
+            int max = Input<int>.Get("Zadejte horní limit pro spočtení dokonalých čísel.").AddRule(IntegerRule.Positive);
+            List<string> results = new List<string>();
+            for (int i = 0; i < perfectN.Count(); i++)
+            {
+                int n = perfectN[i];
+                int perfect = (int)(Math.Pow(2, n-1)*(Math.Pow(2, n)-1));
+                if (perfect > max)
+                    break;
+                results.Add(perfect.ToString());
+            }
+            Console.WriteLine("Dokonalá čísla jsou: " + string.Join(",", results));
+        }
+
+        int[] GetNumDigits(int num)
+        {
+            List<int> listOfInts = new List<int>();
+            while (num > 0)
+            {
+                listOfInts.Add(num % 10);
+                num = num / 10;
+            }
+            listOfInts.Reverse();
+            return listOfInts.ToArray();
+        }
+
+        public void Process72()
+        {
+            int max = Input<int>.Get("Zadejte horní limit pro spočtení Armstrongových čísel.").AddRule(IntegerRule.Positive);
+            List<string> results = new List<string>();
+            for (int i = 1; i < max; i++)
+            {
+                int a = 0;
+                foreach (int d in GetNumDigits(i))
+                {
+                    a += (int)Math.Pow(d, 3);
+                }
+
+                if (a == i)
+                    results.Add(a.ToString());
+            }
+            Console.WriteLine("Armstrongova čísla jsou: " + string.Join(",", results));
+        }
+
+        List<int> GetDivisors(int num)
+        {
+            List<int> divisors = new List<int>() { 1 };
+            for (int j = 2; j < num; j++)
+            {
+                if (num % j == 0)
+                    divisors.Add(j);
+            }
+            return divisors;
+        }
+
+        public void Process73()
+        {
+            int max = Input<int>.Get("Zadejte horní limit pro spočtení dokonalých čísel 2. řádu.").AddRule(IntegerRule.Positive);
+            List<string> results = new List<string>();
+            for (int i = 1; i < max; i++)
+            {
+                int mul = 1;
+                for(int j = 2; j < i; j++)
+                {
+                    if (i % j == 0)
+                        mul *= j;
+                }
+                if (mul == i)
+                    results.Add(i.ToString());
+            }
+            Console.WriteLine("Dokonalá čísla 2. řádu jsou: " + string.Join(",", results));
+        }
+
+        public void Process74()
+        {
+            int max = Input<int>.Get("Zadejte horní limit pro spočtení spřátelených čísel.").AddRule(IntegerRule.Positive);
+            Console.WriteLine("Dokonalá čísla 2. řádu jsou:");
+            Dictionary<int, int> res = new Dictionary<int, int>();
+            for (int i = 1; i < max; i++)
+            {
+                for (int j = 1; j < max; j++)
+                {
+                    if (i == j)
+                        continue;
+                    if (GetDivisors(i).Sum() == j && GetDivisors(j).Sum() == i && !res.ContainsValue(i))
+                    {
+                        res.Add(i, j);
+                    }
+                }
+            }
+
+            foreach (KeyValuePair<int, int> pair in res)
+            {
+                Console.WriteLine(pair.Key.ToString() + " - " + pair.Value.ToString());
+            }            
+        }
     }
 }
