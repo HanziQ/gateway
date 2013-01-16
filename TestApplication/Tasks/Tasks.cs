@@ -9,6 +9,8 @@ using Gateway;
 using System.Numerics;
 using System.IO;
 using System.Security.Cryptography;
+using System.Collections;
+using System.Diagnostics;
 
 namespace TestApplication.Tasks
 {
@@ -1097,7 +1099,7 @@ namespace TestApplication.Tasks
             for (int i = 0; i < perfectN.Count(); i++)
             {
                 int n = perfectN[i];
-                int perfect = (int)(Math.Pow(2, n-1)*(Math.Pow(2, n)-1));
+                int perfect = (int)(Math.Pow(2, n - 1) * (Math.Pow(2, n) - 1));
                 if (perfect > max)
                     break;
                 results.Add(perfect.ToString());
@@ -1153,7 +1155,7 @@ namespace TestApplication.Tasks
             for (int i = 1; i < max; i++)
             {
                 int mul = 1;
-                for(int j = 2; j < i; j++)
+                for (int j = 2; j < i; j++)
                 {
                     if (i % j == 0)
                         mul *= j;
@@ -1185,7 +1187,428 @@ namespace TestApplication.Tasks
             foreach (KeyValuePair<int, int> pair in res)
             {
                 Console.WriteLine(pair.Key.ToString() + " - " + pair.Value.ToString());
-            }            
+            }
+        }
+
+        public void Process75()
+        {
+            Console.WriteLine("Zadejte čísla, ukončete záporným číslem.");
+
+            List<int> nums = new List<int>();
+            while (true)
+            {
+                int i = Input<int>.Get("");
+                if (i < 0)
+                    break;
+                nums.Add(i);
+            }
+            nums.Reverse();
+            Console.WriteLine("Čísla v opačném pořadí jsou: " + string.Join(", ", nums));
+        }
+
+        public void Process76()
+        {
+            Console.WriteLine("Zadejte čísla, ukončete záporným číslem.");
+
+            List<int> nums = new List<int>();
+            while (true)
+            {
+                int i = Input<int>.Get("");
+                if (i < 0)
+                    break;
+                nums.Add(i);
+            }
+            Console.WriteLine("Čísla jsou: " + string.Join(", ", nums));
+        }
+
+        public void Process77()
+        {
+            Console.WriteLine("Zadejte čísla, ukončete záporným číslem.");
+
+            LinkedList<int> nums = new LinkedList<int>();
+            while (true)
+            {
+                int i = Input<int>.Get("");
+                if (i < 0)
+                    break;
+                nums.AddLast(i);
+            }
+            Console.WriteLine("Čísla jsou: " + string.Join(", ", nums));
+        }
+
+        public void Process78()
+        {
+            Console.WriteLine("Zadejte čísla, ukončete záporným číslem.");
+
+            LinkedList<int> nums = new LinkedList<int>();
+            while (true)
+            {
+                int i = Input<int>.Get("");
+                if (i < 0)
+                    break;
+                nums.AddLast(i);
+            }
+            Console.WriteLine("Předposlední prvek je: " + nums.Last.Previous.Value.ToString());
+        }
+
+        public void Process79()
+        {
+            Console.WriteLine("Zadejte čísla, ukončete záporným číslem.");
+
+            CircularLinkedList<int> nums = new CircularLinkedList<int>();
+            while (true)
+            {
+                int i = Input<int>.Get("");
+                if (i < 0)
+                    break;
+                nums.AddLast(i);
+            }
+            List<int> ints = new List<int>();
+            IEnumerator<int> en = nums.GetEnumerator();
+            while (en.MoveNext())
+                ints.Add(en.Current);
+            Console.WriteLine(string.Join(",", ints));
+
+            ints.Clear();
+
+            en = nums.GetReverseEnumerator();
+            while (en.MoveNext())
+                ints.Add(en.Current);
+            Console.WriteLine(string.Join(",", ints));
+        }
+
+        public void Process80()
+        {
+            Console.WriteLine("Zadejte čísla, ukončete záporným číslem.");
+
+            List<int> nums = new List<int>();
+            while (true)
+            {
+                int i = Input<int>.Get("");
+                if (i < 0)
+                    break;
+                nums.Add(i);
+            }
+            Console.WriteLine(string.Join(",", nums));
+
+            int search = Input<int>.Get("Zadejte číslo pro vyhledání.");
+            int res = nums.BinarySearch(search);
+            if (res < 0)
+            {
+                Console.WriteLine("Číslo nebylo nalezeno.");
+            }
+            else
+            {
+                Console.WriteLine("Číslo se nachází na pozici " + res + ".");
+            }
+        }
+
+        public void Process81()
+        {
+            Random r = new Random();
+            List<int> randomNums = new List<int>();
+            const int LIST_SIZE = 20;
+            for (int i = 0; i < LIST_SIZE; i++)
+            {
+                randomNums.Add(r.Next(0, 200));
+            }
+            Console.WriteLine("Náhodná čísla pro řazení jsou: " + string.Join(",", randomNums));
+            Console.WriteLine("Vyberte si způsob řazení:");
+            Console.WriteLine("(1) řazení dle množiny\n(2) řazení vkládáním\n(3) řazení vkládáním\n(4) řazení výměnou");
+            Console.WriteLine("(5) Shellsortem\n(6) Heapsortem\n(7) Quicksortem");
+            int sortalg = Input<int>.Get().AddRule(IntegerRule.GetRange(1, 7));
+            List<int> res = new List<int>();
+            switch (sortalg)
+            {
+                case 1:
+                    break;
+                case 2:
+                    res = insertionSort(randomNums);
+                    break;
+                case 3:
+                    res = selectionSort(randomNums);
+                    break;
+                case 4:
+                    res = bubbleSort(randomNums);
+                    break;
+                case 5:
+                    res = shellSort(randomNums);
+                    break;
+                case 6:
+                    res = heapSort(randomNums);
+                    break;
+                case 7:
+                    res = quickSort(randomNums, 0, randomNums.Count - 1);
+                    break;
+            }
+            Console.WriteLine(string.Join(",", res));
+        }
+
+        #region sortalgs
+
+        public List<int> insertionSort(List<int> input)
+        {
+            for (int i = 0; i < input.Count; i++)
+            {
+                int value = input[i];
+                int hole = i;
+                while (hole > 0 && value < input[hole - 1])
+                {
+                    input[hole] = input[hole - 1];
+                    hole--;
+                }
+                input[hole] = value;
+            }
+            return input;
+        }
+
+        public List<int> selectionSort(List<int> input)
+        {
+            for (int i = 0; i < input.Count - 1; i++)
+            {
+                int min = int.MaxValue;
+                int minpos = 0;
+                for (int j = i + 1; j < input.Count; j++)
+                {
+                    if (input[j] < min)
+                    {
+                        min = input[j];
+                        minpos = j;
+                    }
+                }
+                int tmp = input[i];
+                input[i] = min;
+                input[minpos] = tmp;
+            }
+            return input;
+        }
+
+        public List<int> bubbleSort(List<int> input)
+        {
+            bool sorted;
+            do
+            {
+                sorted = true;
+                for (int i = 0; i < input.Count - 1; i++)
+                {
+                    if (input[i] > input[i + 1])
+                    {
+                        sorted = false;
+                        int tmp = input[i];
+                        input[i] = input[i + 1];
+                        input[i + 1] = tmp;
+                        break;
+                    }
+                }
+            }
+            while (!sorted);
+            return input;
+        }
+
+        public List<int> shellSort(List<int> input)
+        {
+            int i, j, increment, temp;
+
+            increment = 3;
+
+            while (increment > 0)
+            {
+                for (i = 0; i < input.Count; i++)
+                {
+                    j = i;
+                    temp = input[i];
+
+                    while ((j >= increment) && (input[j - increment] > temp))
+                    {
+                        input[j] = input[j - increment];
+                        j = j - increment;
+                    }
+
+                    input[j] = temp;
+                }
+
+                if (increment / 2 != 0)
+                {
+                    increment = increment / 2;
+                }
+                else if (increment == 1)
+                {
+                    increment = 0;
+                }
+                else
+                {
+                    increment = 1;
+                }
+            }
+
+            return input;
+        }
+
+        public List<int> heapSort(List<int> input)
+        {
+            //Build-Max-Heap
+            int heapSize = input.Count;
+            for (int p = (heapSize - 1) / 2; p >= 0; p--)
+                input = maxHeapify(input, heapSize, p);
+
+            for (int i = input.Count - 1; i > 0; i--)
+            {
+                //Swap
+                int temp = input[i];
+                input[i] = input[0];
+                input[0] = temp;
+
+                heapSize--;
+                input = maxHeapify(input, heapSize, 0);
+            }
+
+            return input;
+        }
+
+        public List<int> maxHeapify(List<int> input, int heapSize, int index)
+        {
+            int left = (index + 1) * 2 - 1;
+            int right = (index + 1) * 2;
+            int largest = 0;
+
+            if (left < heapSize && input[left] > input[index])
+                largest = left;
+            else
+                largest = index;
+
+            if (right < heapSize && input[right] > input[largest])
+                largest = right;
+
+            if (largest != index)
+            {
+                int temp = input[index];
+                input[index] = input[largest];
+                input[largest] = temp;
+
+                input = maxHeapify(input, heapSize, largest);
+            }
+
+            return input;
+        }
+
+        private List<int> quickSort(List<int> input, int left, int right)
+        {
+            int i = left;
+            int j = right;
+            double pivotValue = ((left + right) / 2);
+            int x = input[Convert.ToInt32(pivotValue)];
+            int w = 0;
+            while (i <= j)
+            {
+                while (input[i] < x)
+                {
+                    i++;
+                }
+                while (x < input[j])
+                {
+                    j--;
+                }
+                if (i <= j)
+                {
+                    w = input[i];
+                    input[i++] = input[j];
+                    input[j--] = w;
+                }
+            }
+            if (left < j)
+            {
+                quickSort(input, left, j);
+            }
+            if (i < right)
+            {
+                quickSort(input, i, right);
+            }
+            return input;
+        }
+
+#endregion
+
+        public void Process82()
+        {
+            Console.WriteLine("Generuji náhodná čísla.");
+            Random r = new Random();
+            List<int> randomNums = new List<int>();
+            const int LIST_SIZE = 10000;
+            for (int i = 0; i < LIST_SIZE; i++)
+            {
+                randomNums.Add(r.Next(0, 100000));
+            }
+            List<long> times = new List<long>();
+            List<List<int>> results = new List<List<int>>();
+            Console.WriteLine("Testuji...");
+            Stopwatch s = new Stopwatch();
+
+            s.Start();
+            results.Add(insertionSort(randomNums));
+            times.Add(s.ElapsedMilliseconds);
+            s.Reset();
+
+            s.Start();
+            results.Add(selectionSort(randomNums));
+            times.Add(s.ElapsedMilliseconds);
+            s.Reset();
+
+            s.Start();
+            results.Add(bubbleSort(randomNums));
+            times.Add(s.ElapsedMilliseconds);
+            s.Reset();
+
+            s.Start();
+            results.Add(shellSort(randomNums));
+            times.Add(s.ElapsedMilliseconds);
+            s.Reset();
+
+            s.Start();
+            results.Add(heapSort(randomNums));
+            times.Add(s.ElapsedMilliseconds);
+            s.Reset();
+
+            s.Start();
+            results.Add(quickSort(randomNums, 0, randomNums.Count - 1));
+            times.Add(s.ElapsedMilliseconds);
+            s.Reset();
+
+            string[] nazvy = new string[] { "insertion", "selection", "bubble", "shell", "heap", "quick" };
+            for (int i = 0; i < nazvy.Length; i++)
+            {
+                Console.WriteLine(nazvy[i] + " - " + times[i].ToString());
+            }
+            Console.WriteLine();
+            List<int> checkNums = new List<int>();
+            for (int i = 0; i < 200; i++)
+            {
+                checkNums.Add(r.Next(0, LIST_SIZE - 1));
+            }
+            bool fail = false;
+            int failIndex = -1;
+            foreach (int n in checkNums)
+            {
+                int check = -1;
+                int rescounter = 0;
+                foreach (List<int> res in results)
+                {
+                    if (check == -1)
+                        check = res[n];
+                    if (check != res[n])
+                    {                 
+                        fail = true;
+                        failIndex = rescounter;
+                        break;
+                    }
+                    rescounter++;
+                }
+                if (fail)
+                    break;
+            }
+            if (fail)
+            {
+                Console.WriteLine("fail: " + nazvy[failIndex]);
+            }
         }
     }
 }
