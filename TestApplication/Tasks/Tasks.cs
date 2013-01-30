@@ -1526,7 +1526,7 @@ namespace TestApplication.Tasks
             return input;
         }
 
-#endregion
+        #endregion
 
         public void Process82()
         {
@@ -1595,7 +1595,7 @@ namespace TestApplication.Tasks
                     if (check == -1)
                         check = res[n];
                     if (check != res[n])
-                    {                 
+                    {
                         fail = true;
                         failIndex = rescounter;
                         break;
@@ -1608,6 +1608,141 @@ namespace TestApplication.Tasks
             if (fail)
             {
                 Console.WriteLine("fail: " + nazvy[failIndex]);
+            }
+        }
+
+        public void Process91()
+        {
+
+            Dictionary<int, int> counts = new Dictionary<int, int>();
+            for (int i = 0; i < 10; i++)
+            {
+                counts.Add(i, 0);
+            }
+            int input = Input<int>.Get("Zadejte číslo:").AddRule(IntegerRule.Positive);
+
+            foreach (char c in input.ToString())
+            {
+                int i = Int32.Parse(c.ToString());
+                counts[i]++;
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                if (counts[i] > 0)
+                    Console.WriteLine(i.ToString() + " - " + counts[i] + "x");
+            }
+        }
+
+        public void Process92()
+        {
+            int count = Input<int>.Get("Zadejte počet čísel.").AddRule(IntegerRule.Positive);
+            int cislo = 0;
+            List<int> cisla = new List<int>();
+            for (int i = 1; i <= count; i++)
+            {
+                cislo = Input<int>.Get("zadejte " + i.ToString() + ". číslo.");
+                cisla.Add(cislo);
+            }
+
+            Console.WriteLine("Počet čísel je - " + cisla.Count((i) => { return i == cislo; }));
+        }
+
+        public void Process93()
+        {
+            int count = Input<int>.Get("Zadejte počet čísel.").AddRule(IntegerRule.Positive);
+            int min = int.MaxValue;
+            int cislo;
+            List<int> cisla = new List<int>();
+            for (int i = 1; i <= count; i++)
+            {
+                cislo = Input<int>.Get("zadejte " + i.ToString() + ". číslo.");
+                if (cislo < min)
+                    min = cislo;
+                cisla.Add(cislo);
+            }
+
+            int pocet = cisla.Count((i) => { return i == min; });
+
+            List<int> indexes = new List<int>();
+
+            int last = 0;
+            for (int i = 0; i < pocet; i++)
+            {
+                int res = cisla.IndexOf(min, last);
+                last = res + 1;
+                indexes.Add(res);
+            }
+            Console.WriteLine("Pozice min. čísla jsou - " + string.Join(",", indexes));
+        }
+
+        public void Process94()
+        {
+            while (true)
+            {
+                string input = Input<string>.Get("Zadejte datum (den, měsíc):");
+                string[] tmp = input.Split(',');
+                if (tmp.Length == 2)
+                {
+                    int den;
+                    if (Int32.TryParse(tmp[0].Trim(), out den))
+                    {
+                        int mesic;
+                        if (Int32.TryParse(tmp[1].Trim(), out mesic))
+                        {
+                            try
+                            {
+                                DateTime dt = new DateTime(1, mesic, den);
+                                Console.WriteLine("Číslo dne v roce je: " + dt.DayOfYear);
+                                break;
+
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine(e.Message);
+                            }
+                        }
+                    }
+                }
+
+                Console.WriteLine("Chyba ve formátu.");
+            }
+        }
+
+        public void Process95()
+        {
+            while (true)
+            {
+                string input = Input<string>.Get("Zadejte datum (den, měsíc, rok):");
+                string[] tmp = input.Split(',');
+                if (tmp.Length == 3)
+                {
+                    int den;
+                    if (Int32.TryParse(tmp[0].Trim(), out den))
+                    {
+                        int mesic;
+                        if (Int32.TryParse(tmp[1].Trim(), out mesic))
+                        {
+                            int rok;
+                            if (Int32.TryParse(tmp[2].Trim(), out rok))
+                            {
+                                try
+                                {
+                                    DateTime dt = new DateTime(rok, mesic, den);
+                                    Console.WriteLine("Číslo dne v roce je: " + dt.DayOfYear);
+                                    break;
+
+                                }
+                                catch (Exception e)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                Console.WriteLine("Chyba ve formátu.");
             }
         }
     }
