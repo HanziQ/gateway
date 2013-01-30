@@ -1530,59 +1530,53 @@ namespace TestApplication.Tasks
 
         public void Process82()
         {
+            int count = Input<int>.Get("Zadejte počet čísel pro testování:").AddRule(IntegerRule.Positive);
             Console.WriteLine("Generuji náhodná čísla.");
             Random r = new Random();
             List<int> randomNums = new List<int>();
-            const int LIST_SIZE = 10000;
-            for (int i = 0; i < LIST_SIZE; i++)
+            for (int i = 0; i < count; i++)
             {
-                randomNums.Add(r.Next(0, 100000));
+                randomNums.Add(r.Next(0, 1000000));
             }
-            List<long> times = new List<long>();
             List<List<int>> results = new List<List<int>>();
             Console.WriteLine("Testuji...");
             Stopwatch s = new Stopwatch();
 
             s.Start();
             results.Add(insertionSort(randomNums));
-            times.Add(s.ElapsedMilliseconds);
+            Console.WriteLine("insertion - " + s.ElapsedMilliseconds + "ms");
             s.Reset();
 
             s.Start();
             results.Add(selectionSort(randomNums));
-            times.Add(s.ElapsedMilliseconds);
+            Console.WriteLine("selection - " + s.ElapsedMilliseconds + "ms");
             s.Reset();
 
             s.Start();
             results.Add(bubbleSort(randomNums));
-            times.Add(s.ElapsedMilliseconds);
+            Console.WriteLine("bubble - " + s.ElapsedMilliseconds + "ms");
             s.Reset();
 
             s.Start();
             results.Add(shellSort(randomNums));
-            times.Add(s.ElapsedMilliseconds);
+            Console.WriteLine("shell - " + s.ElapsedMilliseconds + "ms");
             s.Reset();
 
             s.Start();
             results.Add(heapSort(randomNums));
-            times.Add(s.ElapsedMilliseconds);
+            Console.WriteLine("heap - " + s.ElapsedMilliseconds + "ms");
             s.Reset();
 
             s.Start();
             results.Add(quickSort(randomNums, 0, randomNums.Count - 1));
-            times.Add(s.ElapsedMilliseconds);
+            Console.WriteLine("quick - " + s.ElapsedMilliseconds + "ms");
             s.Reset();
 
             string[] nazvy = new string[] { "insertion", "selection", "bubble", "shell", "heap", "quick" };
-            for (int i = 0; i < nazvy.Length; i++)
-            {
-                Console.WriteLine(nazvy[i] + " - " + times[i].ToString());
-            }
-            Console.WriteLine();
             List<int> checkNums = new List<int>();
             for (int i = 0; i < 200; i++)
             {
-                checkNums.Add(r.Next(0, LIST_SIZE - 1));
+                checkNums.Add(r.Next(0, count - 1));
             }
             bool fail = false;
             int failIndex = -1;
