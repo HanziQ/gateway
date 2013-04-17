@@ -1739,5 +1739,62 @@ namespace TestApplication.Tasks
                 Console.WriteLine("Chyba ve formátu.");
             }
         }
+
+        public void Process101()
+        {
+            List<List<int>> res = new List<List<int>>();
+            for (int a = 1; a < 20; a++)
+            {
+                for (int b = 1; b < 20; b++)
+                {
+                    for (int k = 1; k < 20; k++)
+                    {
+                        for (int l = 1; l < 20; l++)
+                        {
+                            if (!((a <= k && b <= l) || (a >= k && b >= l)))
+                            {
+                                res.Add(new List<int>() { a, b, k, l});
+                            }
+                        }
+                    }
+                }
+            }
+
+            foreach (List<int> l in res)
+            {
+                Console.WriteLine(string.Format("[{0},{1}], [{2},{3}]", l[0], l[1], l[2], l[3]));
+            }
+            Console.WriteLine("Počet řešení je: " + res.Count.ToString());
+        }
+
+        public void Process102()
+        {
+            int input = Input<int>.Get("Zadejte N.").AddRule(IntegerRule.Positive);
+            List<List<int>> res = new List<List<int>>();
+            for (int i = 1; i < input - 3; i++)
+            {
+                for (int j = 1; j < input - 3; j++)
+                {
+                    for (int k = 1; k < input - 3; k++)
+                    {
+                        for (int l = 1; l < input - 3; l++)
+                        {
+                            for (int m = 1; m < input - 3; m++)
+                            {
+                                if (i + j + k + l + m == input && i <= j && j <= k && k <= l && l <= m)
+                                {
+                                    res.Add(new List<int>() {i, j, k, l, m});
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            foreach (List<int> l in res)
+            {
+                 Console.WriteLine(string.Format("[{0},{1},{2},{3},{4}]", l[0], l[1], l[2], l[3], l[4]));
+            }
+            Console.WriteLine("Počet řešení je: " + res.Count.ToString());
+        }
     }
 }

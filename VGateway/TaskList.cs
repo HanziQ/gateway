@@ -1,42 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace VGateway
 {
-    public class TaskList
+    public partial class TaskList : Form
     {
-        public List<int> GetTasks()
+        private List<TaskInfo> Tasks = new List<TaskInfo>();
+
+        public TaskList()
         {
-            List<int> nums = new List<int>();
-            MethodInfo[] mi = GetType().GetMethods();
-            foreach (MethodInfo m in mi)
+            InitializeComponent();
+        }
+
+        private void InitializeTasks()
+        {
+            List<string> descriptions = new List<string>();
+            foreach (string s in File.ReadAllLines("exercises.txt", Encoding.Default))
             {
-                Match ma = Regex.Match(m.Name, "Task(\\d+)");
-                if(ma.Success)
-                {
-                    nums.Add(Int32.Parse(ma.Groups[1].Value));
-                }
+                descriptions.Add(s.Substring(s.IndexOf(" ") + 1));
             }
-            return nums;
+            List<Type> types = (from t in Assembly.GetExecutingAssembly().GetTypes() where t.IsClass && typeof(ITask).IsAssignableFrom(t) && Regex.IsMatch(t.Name, "Task(\\d)+") select t).ToList();
+            foreach (Type t in types)
+            {
+                int num = int.Parse(t.Name.Substring(4));
+                Tasks.Add(new TaskInfo(num, descriptions[num - 1], t));
+                taskSelector.Items.Add("Task " + num.ToString());
+            }
         }
 
-        public void Task1()
+        private void start_Click(object sender, EventArgs e)
         {
-
+            if (taskSelector.SelectedItem == null)
+                return;
+            int num = int.Parse(((string)taskSelector.SelectedItem).Substring(5));
+            Form f = (Form)Activator.CreateInstance(Tasks[num - 1].Type);
+            f.Show();
         }
 
-        public void Task2()
+        private void TaskList_Load(object sender, EventArgs e)
         {
-
+            InitializeTasks();
         }
 
-        public void Task3()
+        private void taskSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            int num = int.Parse(((string)taskSelector.SelectedItem).Substring(5));
+            textUlohy.Text = Tasks[num - 1].Description;
         }
     }
 }

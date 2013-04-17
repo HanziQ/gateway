@@ -1,6 +1,6 @@
-﻿namespace VGateway
+﻿namespace VGateway.Tasks
 {
-    partial class TaskForm
+    partial class Task1
     {
         /// <summary>
         /// Required designer variable.
@@ -28,18 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // TaskForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 266);
-            this.Name = "TaskForm";
-            this.Text = "TaskForm";
-            this.Load += new System.EventHandler(this.TaskForm_Load);
-            this.ResumeLayout(false);
-
+            this.Text = "Task1";
         }
 
         #endregion

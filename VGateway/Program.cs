@@ -15,7 +15,7 @@ namespace VGateway
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TaskListForm(new TaskList()));
+            Application.Run(new TaskList());
         }
     }
 }
