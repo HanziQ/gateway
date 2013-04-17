@@ -46,7 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ITask.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TaskInfo.cs" />
@@ -62,6 +61,30 @@
     <Compile Include="Tasks\Task1.Designer.cs">
       <DependentUpon>Task1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tasks\Task2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tasks\Task2.Designer.cs">
+      <DependentUpon>Task2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks\Task3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tasks\Task3.Designer.cs">
+      <DependentUpon>Task3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks\Task4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tasks\Task4.Designer.cs">
+      <DependentUpon>Task4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks\Task5.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tasks\Task5.Designer.cs">
+      <DependentUpon>Task5.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -73,6 +96,21 @@
     </Compile>
     <EmbeddedResource Include="TaskList.resx">
       <DependentUpon>TaskList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\Task1.resx">
+      <DependentUpon>Task1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\Task2.resx">
+      <DependentUpon>Task2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\Task3.resx">
+      <DependentUpon>Task3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\Task4.resx">
+      <DependentUpon>Task4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\Task5.resx">
+      <DependentUpon>Task5.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

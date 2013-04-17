@@ -28,20 +28,21 @@ namespace VGateway
             {
                 descriptions.Add(s.Substring(s.IndexOf(" ") + 1));
             }
-            List<Type> types = (from t in Assembly.GetExecutingAssembly().GetTypes() where t.IsClass && typeof(ITask).IsAssignableFrom(t) && Regex.IsMatch(t.Name, "Task(\\d)+") select t).ToList();
+            List<Type> types = (from t in Assembly.GetExecutingAssembly().GetTypes() where t.IsClass && Regex.IsMatch(t.Name, "Task(\\d)+") select t).ToList();
             foreach (Type t in types)
             {
                 int num = int.Parse(t.Name.Substring(4));
                 Tasks.Add(new TaskInfo(num, descriptions[num - 1], t));
-                taskSelector.Items.Add("Task " + num.ToString());
+                taskSelector.Items.Add(num.ToString());
             }
+            taskSelector.SelectedIndex = taskSelector.Items.Count - 1;
         }
 
         private void start_Click(object sender, EventArgs e)
         {
             if (taskSelector.SelectedItem == null)
                 return;
-            int num = int.Parse(((string)taskSelector.SelectedItem).Substring(5));
+            int num = int.Parse((string)taskSelector.SelectedItem);
             Form f = (Form)Activator.CreateInstance(Tasks[num - 1].Type);
             f.Show();
         }
@@ -53,7 +54,7 @@ namespace VGateway
 
         private void taskSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int num = int.Parse(((string)taskSelector.SelectedItem).Substring(5));
+            int num = int.Parse((string)taskSelector.SelectedItem);
             textUlohy.Text = Tasks[num - 1].Description;
         }
     }
