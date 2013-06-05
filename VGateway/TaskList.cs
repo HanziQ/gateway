@@ -29,6 +29,7 @@ namespace VGateway
                 descriptions.Add(s.Substring(s.IndexOf(" ") + 1));
             }
             List<Type> types = (from t in Assembly.GetExecutingAssembly().GetTypes() where t.IsClass && Regex.IsMatch(t.Name, "Task(\\d)+") select t).ToList();
+            types.Sort((a, b) => { return a.Name.CompareTo(b.Name); });
             foreach (Type t in types)
             {
                 int num = int.Parse(t.Name.Substring(4));
