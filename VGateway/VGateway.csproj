@@ -55,59 +55,95 @@
     <Compile Include="TaskList.Designer.cs">
       <DependentUpon>TaskList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tasks\Task1.cs">
+    <Compile Include="Tasks\Task12.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tasks\Task1.Designer.cs">
-      <DependentUpon>Task1.cs</DependentUpon>
+    <Compile Include="Tasks\Task12.Designer.cs">
+      <DependentUpon>Task12.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tasks\Task2.cs">
+    <Compile Include="Tasks\Task11.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tasks\Task2.Designer.cs">
-      <DependentUpon>Task2.cs</DependentUpon>
+    <Compile Include="Tasks\Task11.Designer.cs">
+      <DependentUpon>Task11.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tasks\Task3.cs">
+    <Compile Include="Tasks\Task01.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tasks\Task3.Designer.cs">
-      <DependentUpon>Task3.cs</DependentUpon>
+    <Compile Include="Tasks\Task01.Designer.cs">
+      <DependentUpon>Task01.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tasks\Task4.cs">
+    <Compile Include="Tasks\Task13.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tasks\Task4.Designer.cs">
-      <DependentUpon>Task4.cs</DependentUpon>
+    <Compile Include="Tasks\Task13.Designer.cs">
+      <DependentUpon>Task13.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tasks\Task5.cs">
+    <Compile Include="Tasks\Task02.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tasks\Task5.Designer.cs">
-      <DependentUpon>Task5.cs</DependentUpon>
+    <Compile Include="Tasks\Task02.Designer.cs">
+      <DependentUpon>Task02.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tasks\Task6.cs">
+    <Compile Include="Tasks\Task03.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tasks\Task6.Designer.cs">
-      <DependentUpon>Task6.cs</DependentUpon>
+    <Compile Include="Tasks\Task03.Designer.cs">
+      <DependentUpon>Task03.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tasks\Task7.cs">
+    <Compile Include="Tasks\Task05.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tasks\Task7.Designer.cs">
-      <DependentUpon>Task7.cs</DependentUpon>
+    <Compile Include="Tasks\Task05.Designer.cs">
+      <DependentUpon>Task05.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tasks\Task8.cs">
+    <Compile Include="Tasks\Task06.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tasks\Task8.Designer.cs">
-      <DependentUpon>Task8.cs</DependentUpon>
+    <Compile Include="Tasks\Task06.Designer.cs">
+      <DependentUpon>Task06.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tasks\Task9.cs">
+    <Compile Include="Tasks\Task15.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tasks\Task9.Designer.cs">
-      <DependentUpon>Task9.cs</DependentUpon>
+    <Compile Include="Tasks\Task15.Designer.cs">
+      <DependentUpon>Task15.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks\Task26.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tasks\Task26.Designer.cs">
+      <DependentUpon>Task26.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks\Task04.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tasks\Task04.Designer.cs">
+      <DependentUpon>Task04.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks\Task07.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tasks\Task07.Designer.cs">
+      <DependentUpon>Task07.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks\Task08.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tasks\Task08.Designer.cs">
+      <DependentUpon>Task08.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks\Task09.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tasks\Task09.Designer.cs">
+      <DependentUpon>Task09.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks\Task10.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tasks\Task10.Designer.cs">
+      <DependentUpon>Task10.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -121,32 +157,50 @@
     <EmbeddedResource Include="TaskList.resx">
       <DependentUpon>TaskList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tasks\Task1.resx">
-      <DependentUpon>Task1.cs</DependentUpon>
+    <EmbeddedResource Include="Tasks\Task12.resx">
+      <DependentUpon>Task12.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tasks\Task2.resx">
-      <DependentUpon>Task2.cs</DependentUpon>
+    <EmbeddedResource Include="Tasks\Task11.resx">
+      <DependentUpon>Task11.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tasks\Task3.resx">
-      <DependentUpon>Task3.cs</DependentUpon>
+    <EmbeddedResource Include="Tasks\Task01.resx">
+      <DependentUpon>Task01.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tasks\Task4.resx">
-      <DependentUpon>Task4.cs</DependentUpon>
+    <EmbeddedResource Include="Tasks\Task02.resx">
+      <DependentUpon>Task02.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tasks\Task5.resx">
-      <DependentUpon>Task5.cs</DependentUpon>
+    <EmbeddedResource Include="Tasks\Task03.resx">
+      <DependentUpon>Task03.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tasks\Task6.resx">
-      <DependentUpon>Task6.cs</DependentUpon>
+    <EmbeddedResource Include="Tasks\Task05.resx">
+      <DependentUpon>Task05.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tasks\Task7.resx">
-      <DependentUpon>Task7.cs</DependentUpon>
+    <EmbeddedResource Include="Tasks\Task06.resx">
+      <DependentUpon>Task06.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tasks\Task8.resx">
-      <DependentUpon>Task8.cs</DependentUpon>
+    <EmbeddedResource Include="Tasks\Task13.resx">
+      <DependentUpon>Task13.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tasks\Task9.resx">
-      <DependentUpon>Task9.cs</DependentUpon>
+    <EmbeddedResource Include="Tasks\Task15.resx">
+      <DependentUpon>Task15.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\Task26.resx">
+      <DependentUpon>Task26.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\Task04.resx">
+      <DependentUpon>Task04.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\Task07.resx">
+      <DependentUpon>Task07.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\Task08.resx">
+      <DependentUpon>Task08.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\Task09.resx">
+      <DependentUpon>Task09.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\Task10.resx">
+      <DependentUpon>Task10.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

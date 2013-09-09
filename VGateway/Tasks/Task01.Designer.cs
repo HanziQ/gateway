@@ -1,6 +1,6 @@
 ﻿namespace VGateway.Tasks
 {
-    partial class Task1
+    partial class Task01
     {
         /// <summary>
         /// Required designer variable.

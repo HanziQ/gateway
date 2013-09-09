@@ -14,7 +14,7 @@ namespace VGateway.Tasks
         Add, Subtract, Multiply, Divide, None
     }
 
-    public partial class Task9 : Form
+    public partial class Task10 : Form
     {
         Dictionary<Operation, string> chars = new Dictionary<Operation, string>()
         {
@@ -31,7 +31,7 @@ namespace VGateway.Tasks
         bool hasRes = false;
         float res;
 
-        public Task9()
+        public Task10()
         {
             InitializeComponent();
         }

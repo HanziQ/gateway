@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace VGateway.Tasks
 {
-    public partial class Task3 : Form
+    public partial class Task03 : Form
     {
-        public Task3()
+        public Task03()
         {
             InitializeComponent();
         }

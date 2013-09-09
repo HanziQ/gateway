@@ -1,55 +1,56 @@
 1 Zadat a seèíst 3 èísla.
 2 Údaj v sekundách vyjádøit v hodinách, minutách a sekundách.
 3 Zadat stranu ètverce a vypoèítat jeho obvod a obsah.
-4 Zadejte pøirozené èíslo a urèete, zda je sudé, resp. liché.
-5 Uhodnìte vygenerované èíslo (napø. od 1 do 10). Poèítaè dává vdy odpovìï.
-6 Zkoušení matematickıch operací. Poèítaè vygeneruje 2 èísla (rozsah si urèete), vyberete pomocí Option operaci (+,-,*,/), zadáte vısledek a dostanete zprávu, zda jste poèítali správnì.
-7 Øešte kvadratickou rovnici.
-8 Vytvoøte program, kterı poèítá trojèlenku – pøímou i nepøímou úmìru.
-9 Vytvoøte kalkulaèku.
-10 Zadat jméno a pøíjmení  s libovolnım poètem mezer na zaèátku nebo konci do jednoho textboxu. Zobrazit jméno a pøíjmení bez mezer na poèátku.
-11 Zadat jméno a pøíjmení  s libovolnım poètem mezer na zaèátku nebo konci do jednoho textboxu. Zobrazit jméno a pøíjmení zvláš.
-12 Zadat jméno a pøíjmení  s libovolnım poètem mezer na zaèátku nebo konci do jednoho textboxu. Zobrazit jméno a pøíjmení zvláš, pøièem pøíjmení bude napsáno velkımi písmeny.
-13 Upravte pøíklad è. 6 tak, aby se v textboxu zobrazovaly vygenerované pøíklady se zadanım vısledkem.
-14 Vygenerovat matici m x n a zobrazit ji.
-15 Vygenerovat matici m x n , zobrazit  ji. Dále urèit maximum na kadém øádku a v kadém sloupci matice. Zobrazit matici s maximy.
-16 Vygenerovat matici m x n ,  zobrazit ji. Urèit souèty v øádcích a sloupcích a matici se souèty zobrazit.
-17 Zobrazit ètvercovou matici n x n s jednièkami na hlavní diagonále a s nulami na všech dalších pozicích.
-18 Vytvoøte pomocí MenuEditoru poloky, pøi jejích aktivaci se zobrazování aktuální datum a bìící èas.
-19 Vytvoøte program pro zadání hesla v èasovém limitu. Program pomocí èasovaèe(Timer) sám sebe uzavøe, pokud uivatel nezadá platné heslo do 15 sekund.
-20 Vytvoøte program - alarm, kterı nás v danı èas (napø. 10 hod 15 min 0 sekund) upozorní na urèitou èinnost. Upozorní pípnutím (beep) a zprávou.
-21 Vytvoøte program – hlídaè èasu, kterı nás po uplynutí zadaného èasu (napø. 1 min) upozorní pípnutím a zprávou.
-22 Vytvoøte program Stopky.
-23 Vytvoøte program pro funkce data a èasu s vyuitím DateTimePickeru.
-24 Vytvoøte seznam dní (datum a den), kdy se budou od 1. 1. 2004 (pondìlí)  pravidelnì po 10 dnech scházet pøátelé. Zadejte i poèet setkání.
-25 Vyhledejte prvních 10 „pátkù tøináctého“, které nastanou od 2. 1. 2004.
-26 Napište program, kterı sdìlí Lomikarovi, kterı den bude boí soud v závislosti na dni, kdy mu Kozina vìtu sdìlil (do roka a do dne).
-27 Máte údaje o platebních dokladech. U kadého z nich je uvedeno datum vystavení, doba splatnosti a datum zaplacení. Rozhodnìte, zda byla dodrena doba splatnosti.  Údaj je zadán v jednom øetìzci a vypadá napø. takto: „1.1.2003 14 10.1.2003“.
-28 Napište program, kterı zjistí èasovı rozdíl mezi dvìma zadanımi èasy. Oba èasy jsou zadány v rámci jednoho dne.
-29 Napište program, kterı ze vstupu (InputBox) pøeète datum a sdìlí, kolik dní uplynulo od tohoto dne do dnešního dne. Pokud zadavatel zadá hodnotu, která není datem a nelze ji na datum pøevést, je toto sdìlení uivateli vypsáno na obrazovku a bìh programu ukonèen.
-30 Napište sami funkci, která porovná délku dvou øetìzcù a vrátí 1, pokud bude delší 1. øetìzec, -1, bude-li delší 2. øetìzec a 0, budou-li stejnì dlouhé.
-31 Vytvoøte proceduru, která v závislosti na parametru zmìní barvu formuláøe a písma. Bude-li parametr 0, pak bude lutá plocha s èernım textem, bude-li  	parametr 1, bude modrá plocha s èervenım textem.
-32 Vytvoøte funkce, která  vypoète souèet èísel od èísla A do èísla B s krokem C. Napø. pro èísla 1, 10, 3 bude souèet 1+4+7+10=22.
-33 Vytvoøte funkci, která bude mít 3 parametry. První dva budou pøedstavovat operandy (èísla), tøetí bude operátor, kterı bude definovat operaci  (+,-,*,/).  Operátor bude øetìzec.
-34 Vytvoøte proceduru, která bude losovat èísla.  Zadejte,  kolik má losovat èísel, z kolika a ukládat je má do pole. ádné èíslo se nesmí opakovat.
-35 Sestavte program pro zjištìní, zda 3 zadaná èísla mohou bıt stranami trojúhelníka, zda je tento pravoúhlı. Pouijte podprogramy – procedury, funkce
-36 Vytvoøte kopii existujícího souboru do textboxu. 
-37 Vytvoøte kopii existujícího souboru do jiného souboru (ne kopírováním).  Do zkopírovaného souboru pak pøidejte na konec další text .
-38 Vytvoøte program pro generování pøíkladù pro mladšího sourozence. Zadáme poèet pøíkladù, dále matematickou operaci a nejvìtší hodnotu jednotlivıch operandù. Generované pøíklady umístìte do zvoleného souboru.
-39 Máme soubor, kterı obsahuje jména lidí a jejich datum narození, oba údaje jsou oddìleny èárkou. Vytvoøte program, kterı naète ze souboru tyto hodnoty a  ze zadaného data narození vypoèítá vìk dané osoby. Do druhého souboru uloí jméno a právì vypoètenı vìk osoby. Pro vıpoèet vìku pouijte funkci.
-40 Vytvoøte SDI aplikaci s Menu pro práci se Soubory (Otevøít, Uloit jako …, Zavøít, Konec) a Help (O autorovi, Kontakty) – s texty   zobrazovanımi v jiném formuláøi.
-41 Vytvoøte SDI aplikaci pro pøíklad 38, zadání pøíkladù se zobrazí na jiném formuláøi.
-42 Vytvoøte MDI aplikaci pro pøíklad 38.
-43 Vytvoøte vlastní MDI aplikaci.
-44 Vytvoøte program Manager s vyuitím StatusStripu.
-45 Vytvoøte program, ve kterém vytvoøíte za bìhu programu druhı formuláø s konkrétním umístìním na ploše (DesktopBounds,    StartPosition) 
-46 Vytvoøte program, kterım vznikne druhı formuláø a v nìm se za bìhu programu vytvoøí ovládací prvek Label (s aktuálním datumem) a PictureBox s obrázkem.
-47 Vytvoøte program, kterı bude zobrazovat tìlesa Kvádr, Krychli, Válec, Kuel se vzorci pro vıpoèet objemu a povrchu.
-48 Vytvoøte jednoduchou animaci s nakreslenım obrázkem.
-49 Vytvoøte animaci s objektem, pouijte i zvìtšování, zmenšování objektu.
-50 Vytvoøte sloitìjší animaci (více objektù, obrázkù, odrazy, sráky…)
-51 Vytvoøit jednoduchou hru.
-52 Vytvoøit program pro práci se slokami a soubory.
-53 Øešte rovnici x=cosx pomocí metody pùlení intervalu s pøesností na 0,001.
-54 Øešte rovnici x=cosx pomocí metody tìtiv s pøesností 0,001.
-55 Øešte rovnici x=cosx pomocí metody teèen s pøesností 0,001.
+4 BMI
+5 Zadejte pøirozené èíslo a urèete, zda je sudé, resp. liché.
+6 Uhodnìte vygenerované èíslo (napø. od 1 do 10). Poèítaè dává vdy odpovìï.
+7 Zkoušení matematickıch operací. Poèítaè vygeneruje 2 èísla (rozsah si urèete), vyberete pomocí Option operaci (+,-,*,/), zadáte vısledek a dostanete zprávu, zda jste poèítali správnì.
+8 Øešte kvadratickou rovnici.
+9 Vytvoøte program, kterı poèítá trojèlenku – pøímou i nepøímou úmìru.
+10 Vytvoøte kalkulaèku. 
+11 Zadat jméno a pøíjmení  s libovolnım poètem mezer na zaèátku nebo konci do jednoho textboxu. Zobrazit jméno a pøíjmení bez mezer na poèátku.
+12 Zadat jméno a pøíjmení  s libovolnım poètem mezer na zaèátku nebo konci do jednoho textboxu. Zobrazit jméno a pøíjmení zvláš.
+13 Zadat jméno a pøíjmení  s libovolnım poètem mezer na zaèátku nebo konci do jednoho textboxu. Zobrazit jméno a pøíjmení zvláš, pøièem pøíjmení bude napsáno velkımi písmeny.
+14 Upravte pøíklad è. 6 tak, aby se v textboxu zobrazovaly vygenerované pøíklady se zadanım vısledkem.
+15 Vygenerovat matici m x n a zobrazit ji.
+16 Vygenerovat matici m x n , zobrazit  ji. Dále urèit maximum na kadém øádku a v kadém sloupci matice. Zobrazit matici s maximy.
+17 Vygenerovat matici m x n ,  zobrazit ji. Urèit souèty v øádcích a sloupcích a matici se souèty zobrazit.
+18 Zobrazit ètvercovou matici n x n s jednièkami na hlavní diagonále a s nulami na všech dalších pozicích.
+19 Vytvoøte pomocí MenuEditoru poloky, pøi jejích aktivaci se zobrazování aktuální datum a bìící èas.
+20 Vytvoøte program pro zadání hesla v èasovém limitu. Program pomocí èasovaèe(Timer) sám sebe uzavøe, pokud uivatel nezadá platné heslo do 15 sekund.
+21 Vytvoøte program - alarm, kterı nás v danı èas (napø. 10 hod 15 min 0 sekund) upozorní na urèitou èinnost. Upozorní pípnutím (beep) a zprávou.
+22 Vytvoøte program – hlídaè èasu, kterı nás po uplynutí zadaného èasu (napø. 1 min) upozorní pípnutím a zprávou.
+23 Vytvoøte program Stopky.
+24 Vytvoøte program pro funkce data a èasu s vyuitím DateTimePickeru.
+25 Vytvoøte seznam dní (datum a den), kdy se budou od 1. 1. 2004 (pondìlí)  pravidelnì po 10 dnech scházet pøátelé. Zadejte i poèet setkání.
+26 Vyhledejte prvních 10 „pátkù tøináctého“, které nastanou od 2. 1. 2004.
+27 Napište program, kterı sdìlí Lomikarovi, kterı den bude boí soud v závislosti na dni, kdy mu Kozina vìtu sdìlil (do roka a do dne).
+28 Máte údaje o platebních dokladech. U kadého z nich je uvedeno datum vystavení, doba splatnosti a datum zaplacení. Rozhodnìte, zda byla dodrena doba splatnosti.  Údaj je zadán v jednom øetìzci a vypadá napø. takto: „1.1.2003 14 10.1.2003“.
+29 Napište program, kterı zjistí èasovı rozdíl mezi dvìma zadanımi èasy. Oba èasy jsou zadány v rámci jednoho dne.
+30 Napište program, kterı ze vstupu (InputBox) pøeète datum a sdìlí, kolik dní uplynulo od tohoto dne do dnešního dne. Pokud zadavatel zadá hodnotu, která není datem a nelze ji na datum pøevést, je toto sdìlení uivateli vypsáno na obrazovku a bìh programu ukonèen.
+31 Napište sami funkci, která porovná délku dvou øetìzcù a vrátí 1, pokud bude delší 1. øetìzec, -1, bude-li delší 2. øetìzec a 0, budou-li stejnì dlouhé.
+32 Vytvoøte proceduru, která v závislosti na parametru zmìní barvu formuláøe a písma. Bude-li parametr 0, pak bude lutá plocha s èernım textem, bude-li  	parametr 1, bude modrá plocha s èervenım textem.
+33 Vytvoøte funkce, která  vypoète souèet èísel od èísla A do èísla B s krokem C. Napø. pro èísla 1, 10, 3 bude souèet 1+4+7+10=22.
+34 Vytvoøte funkci, která bude mít 3 parametry. První dva budou pøedstavovat operandy (èísla), tøetí bude operátor, kterı bude definovat operaci  (+,-,*,/).  Operátor bude øetìzec.
+35 Vytvoøte proceduru, která bude losovat èísla.  Zadejte,  kolik má losovat èísel, z kolika a ukládat je má do pole. ádné èíslo se nesmí opakovat.
+36 Sestavte program pro zjištìní, zda 3 zadaná èísla mohou bıt stranami trojúhelníka, zda je tento pravoúhlı. Pouijte podprogramy – procedury, funkce
+37 Vytvoøte kopii existujícího souboru do textboxu. 
+38 Vytvoøte kopii existujícího souboru do jiného souboru (ne kopírováním).  Do zkopírovaného souboru pak pøidejte na konec další text .
+39 Vytvoøte program pro generování pøíkladù pro mladšího sourozence. Zadáme poèet pøíkladù, dále matematickou operaci a nejvìtší hodnotu jednotlivıch operandù. Generované pøíklady umístìte do zvoleného souboru.
+40 Máme soubor, kterı obsahuje jména lidí a jejich datum narození, oba údaje jsou oddìleny èárkou. Vytvoøte program, kterı naète ze souboru tyto hodnoty a  ze zadaného data narození vypoèítá vìk dané osoby. Do druhého souboru uloí jméno a právì vypoètenı vìk osoby. Pro vıpoèet vìku pouijte funkci.
+41 Vytvoøte SDI aplikaci s Menu pro práci se Soubory (Otevøít, Uloit jako …, Zavøít, Konec) a Help (O autorovi, Kontakty) – s texty   zobrazovanımi v jiném formuláøi.
+42 Vytvoøte SDI aplikaci pro pøíklad 38, zadání pøíkladù se zobrazí na jiném formuláøi.
+43 Vytvoøte MDI aplikaci pro pøíklad 38.
+44 Vytvoøte vlastní MDI aplikaci.
+45 Vytvoøte program Manager s vyuitím StatusStripu.
+46 Vytvoøte program, ve kterém vytvoøíte za bìhu programu druhı formuláø s konkrétním umístìním na ploše (DesktopBounds,    StartPosition) 
+47 Vytvoøte program, kterım vznikne druhı formuláø a v nìm se za bìhu programu vytvoøí ovládací prvek Label (s aktuálním datumem) a PictureBox s obrázkem.
+48 Vytvoøte program, kterı bude zobrazovat tìlesa Kvádr, Krychli, Válec, Kuel se vzorci pro vıpoèet objemu a povrchu.
+49 Vytvoøte jednoduchou animaci s nakreslenım obrázkem.
+50 Vytvoøte animaci s objektem, pouijte i zvìtšování, zmenšování objektu.
+51 Vytvoøte sloitìjší animaci (více objektù, obrázkù, odrazy, sráky…)
+52 Vytvoøit jednoduchou hru.
+53 Vytvoøit program pro práci se slokami a soubory.
+54 Øešte rovnici x=cosx pomocí metody pùlení intervalu s pøesností na 0,001.
+55 Øešte rovnici x=cosx pomocí metody tìtiv s pøesností 0,001.
+56 Øešte rovnici x=cosx pomocí metody teèen s pøesností 0,001.

@@ -14,7 +14,7 @@ namespace VGateway
 {
     public partial class TaskList : Form
     {
-        private List<TaskInfo> Tasks = new List<TaskInfo>();
+        private Dictionary<int, TaskInfo> Tasks = new Dictionary<int, TaskInfo>();
 
         public TaskList()
         {
@@ -29,11 +29,11 @@ namespace VGateway
                 descriptions.Add(s.Substring(s.IndexOf(" ") + 1));
             }
             List<Type> types = (from t in Assembly.GetExecutingAssembly().GetTypes() where t.IsClass && Regex.IsMatch(t.Name, "Task(\\d)+") select t).ToList();
-            types.Sort((a, b) => { return a.Name.CompareTo(b.Name); });
+            types.Sort((a, b) => { return int.Parse(a.Name.Substring(4)).CompareTo(int.Parse(b.Name.Substring(4))); });
             foreach (Type t in types)
             {
                 int num = int.Parse(t.Name.Substring(4));
-                Tasks.Add(new TaskInfo(num, descriptions[num - 1], t));
+                Tasks.Add(num, new TaskInfo(num, descriptions[num - 1], t));
                 taskSelector.Items.Add(num.ToString());
             }
             taskSelector.SelectedIndex = taskSelector.Items.Count - 1;
@@ -44,7 +44,7 @@ namespace VGateway
             if (taskSelector.SelectedItem == null)
                 return;
             int num = int.Parse((string)taskSelector.SelectedItem);
-            Form f = (Form)Activator.CreateInstance(Tasks[num - 1].Type);
+            Form f = (Form)Activator.CreateInstance(Tasks[num].Type);
             f.Show();
         }
 
@@ -56,7 +56,7 @@ namespace VGateway
         private void taskSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
             int num = int.Parse((string)taskSelector.SelectedItem);
-            textUlohy.Text = Tasks[num - 1].Description;
+            textUlohy.Text = Tasks[num].Description;
         }
     }
 }
