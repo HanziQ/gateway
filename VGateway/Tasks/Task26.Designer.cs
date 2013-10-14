@@ -39,14 +39,14 @@
             this.listBox1.Size = new System.Drawing.Size(176, 212);
             this.listBox1.TabIndex = 0;
             // 
-            // Task25
+            // Task26
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 266);
             this.Controls.Add(this.listBox1);
-            this.Name = "Task25";
-            this.Text = "Task25";
+            this.Name = "Task26";
+            this.Text = "Task26";
             this.Load += new System.EventHandler(this.Task25_Load);
             this.ResumeLayout(false);
 

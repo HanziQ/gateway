@@ -78,7 +78,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Name = "Task11";
-            this.Text = "Task10";
+            this.Text = "Task11";
             this.ResumeLayout(false);
             this.PerformLayout();
 

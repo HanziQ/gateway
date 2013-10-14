@@ -131,7 +131,7 @@
             this.textBox1.Size = new System.Drawing.Size(120, 20);
             this.textBox1.TabIndex = 5;
             // 
-            // Task8
+            // Task09
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -146,8 +146,8 @@
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Name = "Task8";
-            this.Text = "Task8";
+            this.Name = "Task09";
+            this.Text = "Task9";
             this.Load += new System.EventHandler(this.Task8_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();

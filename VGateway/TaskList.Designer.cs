@@ -44,6 +44,7 @@
             this.taskSelector.Size = new System.Drawing.Size(136, 21);
             this.taskSelector.TabIndex = 0;
             this.taskSelector.SelectedIndexChanged += new System.EventHandler(this.taskSelector_SelectedIndexChanged);
+            this.taskSelector.KeyUp += new System.Windows.Forms.KeyEventHandler(this.taskSelector_KeyUp);
             // 
             // label1
             // 

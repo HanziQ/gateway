@@ -18,7 +18,7 @@ namespace VGateway.Tasks
 
         Random r = new Random();
 
-        private void Task6_Load(object sender, EventArgs e)
+        private void Task07_Load(object sender, EventArgs e)
         {
             radioButton1.Select();
             label1.Text = r.Next(20).ToString();

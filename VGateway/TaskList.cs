@@ -58,5 +58,14 @@ namespace VGateway
             int num = int.Parse((string)taskSelector.SelectedItem);
             textUlohy.Text = Tasks[num].Description;
         }
+
+        private void taskSelector_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                start_Click(null, null);
+            }
+        }
+
     }
 }

@@ -237,7 +237,7 @@
             this.b0.UseVisualStyleBackColor = true;
             this.b0.Click += new System.EventHandler(this.b1_Click);
             // 
-            // Task9
+            // Task10
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -261,8 +261,8 @@
             this.Controls.Add(this.b4);
             this.Controls.Add(this.b7);
             this.Controls.Add(this.textBox1);
-            this.Name = "Task9";
-            this.Text = "Task9";
+            this.Name = "Task10";
+            this.Text = "Task10";
             this.ResumeLayout(false);
             this.PerformLayout();
 

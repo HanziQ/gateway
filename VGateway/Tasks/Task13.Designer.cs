@@ -87,7 +87,7 @@
             this.label4.Size = new System.Drawing.Size(0, 13);
             this.label4.TabIndex = 5;
             // 
-            // Task12
+            // Task13
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -98,8 +98,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
-            this.Name = "Task12";
-            this.Text = "Task12";
+            this.Name = "Task13";
+            this.Text = "Task13";
             this.ResumeLayout(false);
             this.PerformLayout();
 

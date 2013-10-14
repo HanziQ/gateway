@@ -11,7 +11,7 @@
 11 Zadat jméno a pøíjmení  s libovolnım poètem mezer na zaèátku nebo konci do jednoho textboxu. Zobrazit jméno a pøíjmení bez mezer na poèátku.
 12 Zadat jméno a pøíjmení  s libovolnım poètem mezer na zaèátku nebo konci do jednoho textboxu. Zobrazit jméno a pøíjmení zvláš.
 13 Zadat jméno a pøíjmení  s libovolnım poètem mezer na zaèátku nebo konci do jednoho textboxu. Zobrazit jméno a pøíjmení zvláš, pøièem pøíjmení bude napsáno velkımi písmeny.
-14 Upravte pøíklad è. 6 tak, aby se v textboxu zobrazovaly vygenerované pøíklady se zadanım vısledkem.
+14 Upravte pøíklad è. 7 tak, aby se v textboxu zobrazovaly vygenerované pøíklady se zadanım vısledkem.
 15 Vygenerovat matici m x n a zobrazit ji.
 16 Vygenerovat matici m x n , zobrazit  ji. Dále urèit maximum na kadém øádku a v kadém sloupci matice. Zobrazit matici s maximy.
 17 Vygenerovat matici m x n ,  zobrazit ji. Urèit souèty v øádcích a sloupcích a matici se souèty zobrazit.
@@ -39,8 +39,8 @@
 39 Vytvoøte program pro generování pøíkladù pro mladšího sourozence. Zadáme poèet pøíkladù, dále matematickou operaci a nejvìtší hodnotu jednotlivıch operandù. Generované pøíklady umístìte do zvoleného souboru.
 40 Máme soubor, kterı obsahuje jména lidí a jejich datum narození, oba údaje jsou oddìleny èárkou. Vytvoøte program, kterı naète ze souboru tyto hodnoty a  ze zadaného data narození vypoèítá vìk dané osoby. Do druhého souboru uloí jméno a právì vypoètenı vìk osoby. Pro vıpoèet vìku pouijte funkci.
 41 Vytvoøte SDI aplikaci s Menu pro práci se Soubory (Otevøít, Uloit jako …, Zavøít, Konec) a Help (O autorovi, Kontakty) – s texty   zobrazovanımi v jiném formuláøi.
-42 Vytvoøte SDI aplikaci pro pøíklad 38, zadání pøíkladù se zobrazí na jiném formuláøi.
-43 Vytvoøte MDI aplikaci pro pøíklad 38.
+42 Vytvoøte SDI aplikaci pro pøíklad 39, zadání pøíkladù se zobrazí na jiném formuláøi.
+43 Vytvoøte MDI aplikaci pro pøíklad 39.
 44 Vytvoøte vlastní MDI aplikaci.
 45 Vytvoøte program Manager s vyuitím StatusStripu.
 46 Vytvoøte program, ve kterém vytvoøíte za bìhu programu druhı formuláø s konkrétním umístìním na ploše (DesktopBounds,    StartPosition) 
