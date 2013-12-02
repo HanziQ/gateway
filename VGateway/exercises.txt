@@ -38,11 +38,11 @@
 38 Vytvoøte kopii existujícího souboru do jiného souboru (ne kopírováním).  Do zkopírovaného souboru pak pøidejte na konec další text .
 39 Vytvoøte program pro generování pøíkladù pro mladšího sourozence. Zadáme poèet pøíkladù, dále matematickou operaci a nejvìtší hodnotu jednotlivých operandù. Generované pøíklady umístìte do zvoleného souboru.
 40 Máme soubor, který obsahuje jména lidí a jejich datum narození, oba údaje jsou oddìleny èárkou. Vytvoøte program, který naète ze souboru tyto hodnoty a  ze zadaného data narození vypoèítá vìk dané osoby. Do druhého souboru uloží jméno a právì vypoètený vìk osoby. Pro výpoèet vìku použijte funkci.
-41 Vytvoøte SDI aplikaci s Menu pro práci se Soubory (Otevøít, Uložit jako …, Zavøít, Konec) a Help (O autorovi, Kontakty) – s texty   zobrazovanými v jiném formuláøi.
-42 Vytvoøte SDI aplikaci pro pøíklad 39, zadání pøíkladù se zobrazí na jiném formuláøi.
-43 Vytvoøte MDI aplikaci pro pøíklad 39.
-44 Vytvoøte vlastní MDI aplikaci.
-45 Vytvoøte program Manager s využitím StatusStripu.
+41 *Vytvoøte SDI aplikaci s Menu pro práci se Soubory (Otevøít, Uložit jako …, Zavøít, Konec) a Help (O autorovi, Kontakty) – s texty   zobrazovanými v jiném formuláøi.
+42 *Vytvoøte SDI aplikaci pro pøíklad 39, zadání pøíkladù se zobrazí na jiném formuláøi.
+43 *Vytvoøte MDI aplikaci pro pøíklad 39.
+44 *Vytvoøte vlastní MDI aplikaci.
+45 *Vytvoøte program Manager s využitím StatusStripu.
 46 Vytvoøte program, ve kterém vytvoøíte za bìhu programu druhý formuláø s konkrétním umístìním na ploše (DesktopBounds,    StartPosition) 
 47 Vytvoøte program, kterým vznikne druhý formuláø a v nìm se za bìhu programu vytvoøí ovládací prvek Label (s aktuálním datumem) a PictureBox s obrázkem.
 48 Vytvoøte program, který bude zobrazovat tìlesa Kvádr, Krychli, Válec, Kužel se vzorci pro výpoèet objemu a povrchu.
@@ -50,7 +50,8 @@
 50 Vytvoøte animaci s objektem, použijte i zvìtšování, zmenšování objektu.
 51 Vytvoøte složitìjší animaci (více objektù, obrázkù, odrazy, srážky…)
 52 Vytvoøit jednoduchou hru.
-53 Vytvoøit program pro práci se složkami a soubory.
-54 Øešte rovnici x=cosx pomocí metody pùlení intervalu s pøesností na 0,001.
-55 Øešte rovnici x=cosx pomocí metody tìtiv s pøesností 0,001.
-56 Øešte rovnici x=cosx pomocí metody teèen s pøesností 0,001.
+53 *Vytvoøit program pro práci se složkami a soubory.
+54 *Øešte rovnici x=cosx pomocí metody pùlení intervalu s pøesností na 0,001.
+55 *Øešte rovnici x=cosx pomocí metody tìtiv s pøesností 0,001.
+56 *Øešte rovnici x=cosx pomocí metody teèen s pøesností 0,001.
+101 Seznamy
